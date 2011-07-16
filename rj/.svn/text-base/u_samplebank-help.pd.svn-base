@@ -1,0 +1,51 @@
+#N canvas 238 97 784 606 10;
+#X floatatom 255 427 8 0 0 3 dur_in_smps - -;
+#X floatatom 181 427 8 0 0 3 dur_in_ms - -;
+#X msg 140 222 info;
+#X msg 106 153 open;
+#X msg 142 275 sr 44100 \, info;
+#X msg 141 300 sr 22050 \, info;
+#X obj 440 415 s_playtable;
+#X obj 440 457 soundoutput;
+#X msg 584 383 sr 44100;
+#X msg 585 360 sr 22050;
+#X symbolatom 106 427 10 0 0 3 table_name - -;
+#X msg 585 415 stop;
+#X text 148 152 load a sample with opendialog;
+#X text 308 186 load a sample by path;
+#X text 262 279 Change the file samplerate \, that is used to calculate
+the duration in milliseconds;
+#X text 315 520 s_playtable can be used to play tables in the samplebank.
+;
+#X text 56 16 u_samplebank;
+#X text 68 101 Arguments:;
+#X msg 123 186 open file_not_found.wav;
+#X text 95 43 Utility patch to load sample files into Pd tables. Also
+calculates duration in milliseconds. Available in stereo as [u_samplebank2]
+as well.;
+#X text 202 215 output list containing: <table name> <duration in ms>
+<duration in samples> <samplerate>;
+#X obj 106 377 unpack s f f f;
+#X floatatom 339 427 6 0 0 3 samplerate - -;
+#X text 108 120 <table name - required!> <path to soundfile - optional>
+;
+#X obj 440 363 symbol \$0-sample;
+#X obj 106 337 u_samplebank \$0-sample;
+#X msg 440 341 bang;
+#X connect 2 0 25 0;
+#X connect 3 0 25 0;
+#X connect 4 0 25 0;
+#X connect 5 0 25 0;
+#X connect 6 0 7 0;
+#X connect 6 0 7 1;
+#X connect 8 0 6 1;
+#X connect 9 0 6 1;
+#X connect 11 0 6 1;
+#X connect 18 0 25 0;
+#X connect 21 0 10 0;
+#X connect 21 1 1 0;
+#X connect 21 2 0 0;
+#X connect 21 3 22 0;
+#X connect 24 0 6 0;
+#X connect 25 0 21 0;
+#X connect 26 0 24 0;
