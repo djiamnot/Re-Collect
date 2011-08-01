@@ -1,4 +1,0 @@
-g_hradio - tagged horizontal radio button GUI
-g_hsl - tagged horizontal slider GUI
-g_nbx - tagged number box GUI
-g_tgl - tagged toggle GUI
