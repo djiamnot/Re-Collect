@@ -10,9 +10,9 @@
 #X obj 49 327 *;
 #X floatatom 49 353 8 0 0 0 - - -;
 #X obj 40 149 t b a;
-#N canvas 0 0 820 496 (subpatch) 0;
-#X array \$1 182272 float 2;
-#X coords 0 1 182272 -1 300 80 1;
+#N canvas 0 22 820 496 (subpatch) 0;
+#X array \$1 82496 float 2;
+#X coords 0 1 82496 -1 300 80 1;
 #X restore 0 29 graph;
 #X obj 62 453 pack s f;
 #X msg 62 483 \; \$1 resize \$2;
@@ -67,10 +67,12 @@ are accessible from the parent or otherwise outside world by the full
 name.;
 #X text 358 370 2nd argument: throw~ bus name.;
 #X obj 420 239 prepend set;
-#X msg 418 261 open ./snd/pdtmp-2010102901332.wav;
+#X msg 418 261 open ./snd/pdtmp-201182223930.wav;
 #X obj 403 148 time;
 #X obj 346 148 date;
-#X obj 326 211 makefilename ./snd/pdtmp-%s.wav;
+#X obj 326 211 makefilename ../snd/pdtmp-%s.wav;
+#X text 522 200 TODO: fix this \, make path to file dynamically selectable
+or something;
 #X connect 1 0 0 0;
 #X connect 1 0 38 0;
 #X connect 2 0 10 0;
