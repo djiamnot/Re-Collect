@@ -1,4 +1,4 @@
-#N canvas 219 79 776 503 10;
+#N canvas 428 121 915 702 10;
 #X obj 319 256 writesf~;
 #X msg 326 233 open \$1;
 #X msg 40 123 start;
@@ -14,8 +14,8 @@
 #X array \$1 82496 float 2;
 #X coords 0 1 82496 -1 300 80 1;
 #X restore 0 29 graph;
-#X obj 62 453 pack s f;
-#X msg 62 483 \; \$1 resize \$2;
+#X obj 50 446 pack s f;
+#X msg 50 476 \; \$1 resize \$2;
 #N canvas 502 74 450 300 faster 0;
 #X obj 137 185 readsf~;
 #X obj 82 36 inlet;
@@ -40,7 +40,7 @@
 #X obj 253 260 symbol;
 #X obj 51 372 t b f f;
 #X obj 319 21 inlet;
-#X obj 331 495 outlet;
+#X obj 199 570 outlet;
 #X obj 50 415 makesymbol \$1;
 #X obj 0 13 cnv 15 300 15 empty empty empty 20 12 0 14 -233017 -66577
 0;
@@ -66,15 +66,20 @@ name (<audio>_<identifier>) will be used for array name. Thus the arrays
 are accessible from the parent or otherwise outside world by the full
 name.;
 #X text 358 370 2nd argument: throw~ bus name.;
-#X obj 420 239 prepend set;
-#X msg 418 261 open ./snd/pdtmp-201182223930.wav;
+#X obj 353 396 prepend set;
+#X msg 351 418 open ./snd/pdtmp-201182223930.wav;
 #X obj 403 148 time;
 #X obj 346 148 date;
 #X obj 326 211 makefilename ../snd/pdtmp-%s.wav;
 #X text 522 200 TODO: fix this \, make path to file dynamically selectable
 or something;
+#X text 178 536 length of buffer in samples;
+#X obj 161 519 prepend length;
+#X obj 313 453 route open;
+#X obj 313 477 prepend filename;
 #X connect 1 0 0 0;
 #X connect 1 0 38 0;
+#X connect 1 0 46 0;
 #X connect 2 0 10 0;
 #X connect 3 0 15 0;
 #X connect 4 0 6 0;
@@ -93,7 +98,7 @@ or something;
 #X connect 16 0 14 0;
 #X connect 17 0 20 0;
 #X connect 17 1 12 1;
-#X connect 17 2 19 0;
+#X connect 17 2 45 0;
 #X connect 18 0 27 0;
 #X connect 20 0 12 0;
 #X connect 22 0 24 0;
@@ -123,4 +128,7 @@ or something;
 #X connect 41 2 22 2;
 #X connect 42 0 1 0;
 #X connect 42 0 16 1;
+#X connect 45 0 19 0;
+#X connect 46 0 47 0;
+#X connect 47 0 19 0;
 #X coords 0 -1 1 1 300 110 1 0 0;
