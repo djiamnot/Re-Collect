@@ -1,0 +1,9 @@
+#N canvas 12 75 751 550 10;
+#X msg 65 57 record \$1;
+#X obj 65 39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 65 19 r trigger_rec_\$1;
+#X obj 65 77 mis.infrec~ \$1_buf;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
