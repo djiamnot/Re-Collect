@@ -46,11 +46,11 @@
 #X connect 14 0 6 0;
 #X connect 15 0 7 0;
 #X restore 198 78 pd meters ------------;
-#X floatatom 436 175 5 0 0 0 - - -;
-#X obj 386 194 i;
-#X obj 386 176 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X floatatom 569 252 5 0 0 0 - - -;
+#X obj 519 271 i;
+#X obj 519 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 386 227 \; trigger_rec_ch\$1 bang;
+#X msg 519 304 \; trigger_rec_ch\$1 bang;
 #X obj 547 85 until;
 #X msg 547 25 8;
 #X obj 547 106 f;
@@ -97,13 +97,13 @@
 -1 -1 0 1;
 #X text 375 566 currently recording...:;
 #X obj 87 232 input~ ch1;
-#X obj 652 327 +;
-#X obj 652 347 == 2;
-#X obj 653 367 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 736 228 +;
+#X obj 736 248 == 2;
+#X obj 737 268 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 660 306 t b f;
-#X obj 652 265 r trig1;
-#X obj 660 287 r trig2;
+#X obj 744 207 t b f;
+#X obj 736 166 r trig1;
+#X obj 744 188 r trig2;
 #N canvas 550 131 450 300 presence 0;
 #X obj 55 53 r sonar1;
 #X obj 153 55 r sonar2;
@@ -160,13 +160,10 @@
 #X restore 265 426 pd meters ------------;
 #X msg 281 222 play 1 1 0;
 #X msg 280 247 play 1 0.5 0;
-#X obj 41 300 rec-player ch3 outBus6;
-#X obj 40 319 rec-player ch4 outBus5;
-#X obj 41 338 rec-player ch5 outBus6;
-#X obj 41 357 rec-player ch6 outBus7;
-#X obj 41 376 rec-player ch8 outBus8;
-#X obj 41 263 rec-player ch1 outBus8;
-#X obj 41 281 rec-player ch2 outBus7;
+#X obj 41 263 mis.record ch1;
+#X obj 41 281 mis.record ch2;
+#X obj 174 317 mis.play ch2 outBus2;
+#X obj 174 295 mis.play ch1 outBus8;
 #X connect 11 0 16 0;
 #X connect 11 0 58 0;
 #X connect 11 1 16 1;
@@ -240,5 +237,5 @@
 #X connect 62 1 59 1;
 #X connect 63 0 59 0;
 #X connect 64 0 62 0;
-#X connect 74 0 81 0;
-#X connect 75 0 81 0;
+#X connect 74 0 79 0;
+#X connect 75 0 78 0;
