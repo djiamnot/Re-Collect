@@ -4,6 +4,16 @@
 ;
 #X obj 65 19 r trigger_rec_\$1;
 #X obj 65 77 mis.infrec~ \$1_buf;
+#X obj 138 243 prepend set;
+#X msg 138 273 length 768;
+#X obj 423 299 outlet;
+#X text 440 270 bang when the array is filled with samples;
+#X obj 112 355 outlet;
+#X text 116 332 just a dummy to make the other outlet a second outlet
+;
 #X connect 0 0 3 0;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 3 1 6 0;
+#X connect 4 0 5 0;
