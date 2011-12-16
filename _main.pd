@@ -79,7 +79,7 @@
 #X obj 394 587 tgl 15 0 empty trigger_rec_ch2 empty 17 7 0 10 -262144
 -1 -1 0 1;
 #X obj 412 587 tgl 15 0 empty trigger_rec_ch3 empty 17 7 0 10 -262144
--1 -1 0 1;
+-1 -1 1 1;
 #X obj 430 587 tgl 15 0 empty trigger_rec_ch4 empty 17 7 0 10 -262144
 -1 -1 0 1;
 #X obj 448 587 tgl 15 0 empty trigger_rec_ch5 empty 17 7 0 10 -262144
@@ -94,7 +94,7 @@
 #X obj 243 184 input~ ch1;
 #X obj 747 225 +;
 #X obj 747 245 == 2;
-#X obj 735 301 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 735 301 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 755 205 t b f;
 #X obj 747 163 r trig1;
@@ -195,7 +195,7 @@
 #X obj 725 456 f;
 #X obj 715 360 sel 0 1;
 #X obj 727 567 prepend set;
-#X msg 725 593 3 0;
+#X msg 725 593 3 1;
 #X obj 735 322 t f f;
 #N canvas 0 0 450 300 random 0;
 #X obj 58 24 r sonar1;
@@ -225,7 +225,7 @@
 #X connect 9 0 8 0;
 #X connect 10 0 4 0;
 #X connect 11 0 7 0;
-#X restore 486 457 pd random players;
+#X restore 533 404 pd random players;
 #N canvas 0 0 450 300 random 0;
 #X obj 58 24 r sonar1;
 #X obj 57 46 > 10;
@@ -254,7 +254,7 @@
 #X connect 9 0 8 0;
 #X connect 10 0 4 0;
 #X connect 11 0 7 0;
-#X restore 487 478 pd random players;
+#X restore 534 425 pd random players;
 #X obj 602 188 metro 3000;
 #X obj 603 218 t b b;
 #X obj 666 246 + 1000;
@@ -264,7 +264,7 @@
 #X msg 541 191 1;
 #X obj 665 225 random 16000;
 #X msg 239 221 stop;
-#N canvas 55 70 901 378 mixer 0;
+#N canvas 59 274 901 378 mixer 0;
 #X obj 40 30 catch~ chan1;
 #X obj 213 28 catch~ chan2;
 #X obj 40 72 g_channelstrip chan1;
@@ -317,13 +317,16 @@
 #X obj 430 72 g_channelstrip chan3;
 #X obj 602 70 g_channelstrip chan4;
 #X obj 603 28 catch~ chan4;
+#X obj 156 340 throw~ \$0-grains;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
 #X connect 2 0 4 0;
 #X connect 2 1 5 0;
+#X connect 2 2 20 0;
 #X connect 2 4 9 0;
 #X connect 3 0 6 0;
 #X connect 3 1 7 0;
+#X connect 3 2 20 0;
 #X connect 3 4 8 0;
 #X connect 8 0 3 1;
 #X connect 9 0 2 1;
@@ -332,18 +335,103 @@
 #X connect 16 0 17 0;
 #X connect 17 0 10 0;
 #X connect 17 1 11 0;
+#X connect 17 2 20 0;
 #X connect 17 4 15 0;
 #X connect 18 0 12 0;
 #X connect 18 1 13 0;
+#X connect 18 2 20 0;
 #X connect 18 4 14 0;
 #X connect 19 0 18 0;
-#X restore 591 394 pd mixer;
+#X restore 446 439 pd mixer;
 #X obj 29 310 mis.play ch2 chan3;
 #X obj 27 268 mis.play ch1 chan4;
 #X obj 226 284 mis.play ch2 chan3;
 #X obj 26 290 mis.play ch1 chan4;
 #X obj 16 130 mis.record ch2;
 #X obj 16 150 mis.record ch3;
+#N canvas 0 0 450 300 dsp 0;
+#N canvas 175 140 608 390 grainsdelay 0;
+#X obj 404 109 s \$0-GRAIN;
+#X obj 404 63 r \$0-SET-GRAIN;
+#N canvas 402 181 518 421 e_graindelread-GUI 0;
+#N canvas 0 0 586 607 GUI 0;
+#X obj 124 128 g_hsl pan-r 0 1;
+#X obj 124 159 g_hsl vol 0 1;
+#X obj 124 225 g_nbx delay;
+#X obj 194 225 g_nbx delay-r;
+#X obj 124 260 g_nbx size;
+#X obj 194 260 g_nbx size-r;
+#X obj 124 295 g_nbx bw;
+#X obj 194 295 g_nbx grain-rate;
+#X obj 124 190 g_hsl vol-r 0 1;
+#X obj 124 68 inlet;
+#X obj 194 369 outlet;
+#X msg 124 405 phase-rand bang;
+#X obj 124 326 bng 15 250 50 0 empty empty phase-rand 17 7 1 10 -262144
+-1 -1;
+#X text 267 132 random panning width;
+#X text 267 162 base volume;
+#X text 268 193 random volume width;
+#X text 270 230 delay \, random delay variation;
+#X text 272 266 grain size and its variation;
+#X text 272 326 randomize the phase;
+#X connect 0 0 1 0;
+#X connect 1 0 8 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 6 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 7 0 10 0;
+#X connect 8 0 2 0;
+#X connect 9 0 0 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X coords 0 -1 1 1 380 250 1 100 100;
+#X restore 30 56 pd GUI;
+#X obj 30 31 inlet;
+#X obj 30 313 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X restore 404 86 pd e_graindelread-GUI;
+#X msg 274 115 help;
+#X msg 305 145 save;
+#X obj 305 168 t a b;
+#X obj 263 217 u_cocollect;
+#X msg 193 270 pan-r 0.787402 \, delay-r 400 \, delay 500 \, size-r
+0 \, size 100 \, vol-r 0.133858 \, vol 0.409449 \, bw 1 \, phase 0.4819
+\, grain-rate 30 \,;
+#X obj 193 319 s \$0-SET-GRAIN;
+#X text 63 165 Args: <NAME> <delayline>;
+#X obj 263 93 r \$0-GRAIN;
+#X obj 193 217 loadbang;
+#X text 349 148 saving;
+#X text 390 41 Slider controls inside:;
+#X obj 38 335 outlet~;
+#X obj 101 337 outlet~;
+#X obj 10 51 inlet~;
+#X obj 77 191 e_graindelread TAG \$0-delay;
+#X obj 10 93 delwrite~ \$0-delay 2000;
+#X connect 1 0 2 0;
+#X connect 2 0 0 0;
+#X connect 3 0 17 1;
+#X connect 4 0 5 0;
+#X connect 5 0 17 1;
+#X connect 5 1 6 1;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 10 0 17 1;
+#X connect 11 0 7 0;
+#X connect 16 0 18 0;
+#X connect 17 0 14 0;
+#X connect 17 1 15 0;
+#X connect 17 2 6 0;
+#X restore 111 81 pd grainsdelay;
+#X obj 110 44 catch~ \$0-grains;
+#X obj 109 115 throw~ outBus1;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X restore 445 471 pd dsp;
 #X connect 7 0 9 1;
 #X connect 8 0 7 0;
 #X connect 9 0 0 1;
