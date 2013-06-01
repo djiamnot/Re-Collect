@@ -1,8 +1,21 @@
-#N canvas 349 60 523 614 10;
-#X obj 35 47 comport 9600;
-#X msg 36 17 devices;
-#X msg 95 19 open 2;
-#X obj 37 90 print;
-#X connect 0 0 3 0;
+#N canvas 902 189 490 459 10;
+#X obj 0 291 comport 9600;
+#X msg 1 119 devices;
+#X obj 32 196 vsl 15 80 0 255 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X text 77 112 list available devices;
+#X text 60 112 1;
+#X text 106 140 2;
+#X text 126 141 Open arduino serial device;
+#X msg 13 142 open \$1;
+#X floatatom 66 142 5 0 0 0 - - -;
+#X text 127 154 (click and type the number obtained from 1.);
+#X text 57 197 3;
+#X text 59 215 wiggle the slider;
+#X obj 0 330 print Arduino;
+#X text 96 330 Arduino will echo received values;
+#X connect 0 0 12 0;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
+#X connect 7 0 0 0;
+#X connect 8 0 7 0;
