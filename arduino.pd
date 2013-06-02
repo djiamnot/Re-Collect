@@ -1,21 +1,83 @@
-#N canvas 902 189 490 459 10;
-#X obj 0 291 comport 9600;
-#X msg 1 119 devices;
-#X obj 32 196 vsl 15 80 0 255 0 0 empty empty empty 0 -9 0 10 -262144
+#N canvas 880 84 984 880 10;
+#X obj 86 658 comport 9600;
+#X msg 137 486 devices;
+#X obj 168 563 vsl 15 80 0 255 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
-#X text 77 112 list available devices;
-#X text 60 112 1;
-#X text 106 140 2;
-#X text 126 141 Open arduino serial device;
-#X msg 13 142 open \$1;
-#X floatatom 66 142 5 0 0 0 - - -;
-#X text 127 154 (click and type the number obtained from 1.);
-#X text 57 197 3;
-#X text 59 215 wiggle the slider;
-#X obj 0 330 print Arduino;
-#X text 96 330 Arduino will echo received values;
-#X connect 0 0 12 0;
+#X text 213 479 list available devices;
+#X text 196 479 1;
+#X text 242 507 2;
+#X text 262 508 Open arduino serial device;
+#X msg 149 509 open \$1;
+#X floatatom 202 509 5 0 0 0 - - -;
+#X text 263 521 (click and type the number obtained from 1.);
+#X text 193 564 3;
+#X text 195 582 wiggle the slider;
+#X obj 86 697 print Arduino;
+#X text 182 697 Arduino will echo received values;
+#X msg 267 632 close;
+#X obj 50 67 playsf~;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-spec 512 float 2;
+#X coords 0 1 512 0 200 140 1 0 0;
+#X restore 465 106 graph;
+#X obj 52 257 dac~;
+#X obj 82 173 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 6200 1;
+#X obj 78 201 dbtorms;
+#X obj 52 227 *~;
+#X obj 75 142 abs/spectrum.mmb~ \$0-spec;
+#X obj 308 192 tabread \$0-spec;
+#X obj 308 39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 308 60 metro 33;
+#X obj 308 82 t b b;
+#X obj 308 164 f;
+#X obj 336 164 + 1;
+#X msg 354 92 0;
+#X msg 308 106 30;
+#X obj 308 128 until;
+#X obj 308 214 list-group 30;
+#X obj 324 274 prepend set;
+#X obj 324 253 spigot;
+#X obj 356 234 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 324 296 0.788271 0.8031 0.760852 0.726687 0.80753 0.79322 0.722668
+0.623051 0.578154 0.540414 0.366897 0.487811 0.524772 0.532895 0.524914
+0.475488 0.458643 0.454969 0.430902 0.387586 0.336218 0.325589 0.323077
+0.321067 0.267533 0.280844 0.30756 0.100122 0.387406 0.436155;
+#X text 374 234 display values;
+#X obj 308 381 s arduino;
+#X obj 86 457 r arduino;
+#X text 44 24 load a sound file (WAV or AIFF);
+#X text 47 42 and play/loop it;
+#X text 340 28 activate sending values to the arduino;
+#X text 315 403 send first 30 values of the spectrum to the arduino
+;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 7 0 0 0;
 #X connect 8 0 7 0;
+#X connect 14 0 0 0;
+#X connect 15 0 20 0;
+#X connect 15 0 21 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 1;
+#X connect 20 0 17 1;
+#X connect 20 0 17 0;
+#X connect 22 0 31 0;
+#X connect 23 0 24 0;
+#X connect 24 0 25 0;
+#X connect 25 0 29 0;
+#X connect 25 1 28 0;
+#X connect 26 0 27 0;
+#X connect 26 0 22 0;
+#X connect 27 0 26 1;
+#X connect 28 0 26 1;
+#X connect 29 0 30 0;
+#X connect 30 0 26 0;
+#X connect 31 0 33 0;
+#X connect 31 0 37 0;
+#X connect 32 0 35 0;
+#X connect 33 0 32 0;
+#X connect 34 0 33 1;
+#X connect 38 0 0 0;
