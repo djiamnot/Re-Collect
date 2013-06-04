@@ -1,4 +1,4 @@
-#N canvas 880 82 984 880 10;
+#N canvas 880 81 984 880 10;
 #X obj 86 658 comport 9600;
 #X msg 137 486 devices;
 #X obj 168 563 vsl 15 80 0 255 0 0 empty empty empty 0 -9 0 10 -262144
@@ -50,7 +50,7 @@
 #X text 44 24 load a sound file (WAV or AIFF);
 #X text 47 42 and play/loop it;
 #X text 340 28 activate sending values to the arduino;
-#X text 406 450 send first 30 values of the spectrum to the arduino
+#X text 368 417 send first 30 values of the spectrum to the arduino
 ;
 #X obj 308 214 * 255;
 #X obj 308 236 int;
