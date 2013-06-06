@@ -1,4 +1,4 @@
-#N canvas 880 80 984 880 10;
+#N canvas 880 79 984 880 10;
 #X obj 86 658 comport 9600;
 #X msg 137 486 devices;
 #X obj 168 563 vsl 15 80 0 255 0 0 empty empty empty 0 -9 0 10 -262144
@@ -21,40 +21,44 @@
 #X restore 604 78 graph;
 #X obj 52 257 dac~;
 #X obj 82 173 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 1000 1;
 #X obj 78 201 dbtorms;
 #X obj 52 227 *~;
 #X obj 75 142 abs/spectrum.mmb~ \$0-spec;
 #X obj 308 192 tabread \$0-spec;
-#X obj 308 39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 308 39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 308 60 metro 33;
-#X obj 308 82 t b b;
 #X obj 308 164 f;
 #X obj 336 164 + 1;
-#X msg 354 92 0;
+#X msg 350 117 0;
 #X msg 308 106 30;
 #X obj 308 128 until;
-#X obj 309 259 list-group 30;
-#X obj 339 322 prepend set;
-#X obj 339 301 spigot;
-#X obj 371 282 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
-#X msg 339 344 158 146 160 194 212 208 185 159 173 168 142 129 159
-177 182 173 154 135 115 113 124 127 112 96 128 126 115 125 144 145
-;
-#X text 389 282 display values;
-#X obj 309 398 s arduino;
+#X obj 308 259 s arduino;
 #X obj 86 457 r arduino;
 #X text 44 24 load a sound file (WAV or AIFF);
 #X text 47 42 and play/loop it;
 #X text 340 28 activate sending values to the arduino;
-#X text 368 417 send first 30 values of the spectrum to the arduino
-;
 #X obj 308 214 * 255;
 #X obj 308 236 int;
-#X obj 309 378 prepend 255;
 #X obj 51 65 abs/playsf~;
+#X obj 149 455 print toArduino;
+#X msg 670 613 baud 57600;
+#X msg 702 652 baud 230400;
+#X msg 689 632 baud 115200;
+#X msg 651 594 baud 38400;
+#X msg 632 575 baud 19200;
+#X msg 613 556 baud 9600;
+#X obj 615 683 s arduino;
+#X text 611 536 choose a baudrate;
+#X obj 308 82 t b b b;
+#X msg 397 115 255;
+#X obj 149 434 spigot;
+#X text 371 257 send first 30 values of the spectrum to the arduino
+as a stream;
+#X text 424 104 start-frame delimiter;
+#X obj 182 413 tgl 15 0 empty empty DEBUG 17 7 0 10 -262144 -1 -1 1
+1;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 7 0 0 0;
@@ -64,25 +68,30 @@
 #X connect 18 0 19 1;
 #X connect 19 0 16 1;
 #X connect 19 0 16 0;
-#X connect 21 0 42 0;
+#X connect 21 0 34 0;
 #X connect 22 0 23 0;
-#X connect 23 0 24 0;
-#X connect 24 0 28 0;
-#X connect 24 1 27 0;
-#X connect 25 0 26 0;
-#X connect 25 0 21 0;
-#X connect 26 0 25 1;
-#X connect 27 0 25 1;
-#X connect 28 0 29 0;
-#X connect 29 0 25 0;
-#X connect 30 0 32 0;
-#X connect 30 0 44 0;
-#X connect 31 0 34 0;
-#X connect 32 0 31 0;
-#X connect 33 0 32 1;
-#X connect 37 0 0 0;
-#X connect 42 0 43 0;
-#X connect 43 0 30 0;
-#X connect 44 0 36 0;
-#X connect 45 0 19 0;
-#X connect 45 0 20 0;
+#X connect 23 0 46 0;
+#X connect 24 0 25 0;
+#X connect 24 0 21 0;
+#X connect 25 0 24 1;
+#X connect 26 0 24 1;
+#X connect 27 0 28 0;
+#X connect 28 0 24 0;
+#X connect 30 0 48 0;
+#X connect 30 0 0 0;
+#X connect 34 0 35 0;
+#X connect 35 0 29 0;
+#X connect 36 0 19 0;
+#X connect 36 0 20 0;
+#X connect 38 0 44 0;
+#X connect 39 0 44 0;
+#X connect 40 0 44 0;
+#X connect 41 0 44 0;
+#X connect 42 0 44 0;
+#X connect 43 0 44 0;
+#X connect 46 0 27 0;
+#X connect 46 1 26 0;
+#X connect 46 2 47 0;
+#X connect 47 0 29 0;
+#X connect 48 0 37 0;
+#X connect 51 0 48 1;
