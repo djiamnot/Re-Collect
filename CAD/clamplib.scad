@@ -59,7 +59,7 @@ module clamp(inner_diameter, outer_diameter, clamp_width, clamp_thickness, heigh
   $inner_diameter = inner_diameter;
   $clamp_width = clamp_width;
   $clamp_thickness = clamp_thickness;
-  $width = outer_diameter - inner_diameter;
+  $width = (outer_diameter - inner_diameter)/2;
   $height = height;
   $holes = holes;
 
