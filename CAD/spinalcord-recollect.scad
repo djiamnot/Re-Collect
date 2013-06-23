@@ -1,25 +1,15 @@
-outer = 75;
-inner = 45;
-small = 12.5;
-thickness = 5;
-$fs=0.5;
-$fa=5;
+outer_diameter = 150;
+inner_diameter = 32;
+fiber_diameter = 3;
+inset = 10;
+num_fibers = 30;
+i = 10;
 
-linear_extrude(thickness) {
-	difference() {
-		minkowski() {
-		difference() {
-		  circle(outer);
-		  for (i=[0:4]) {
-		    rotate(360/5*i) {
-		      translate([outer-small-3,0,0]) circle(small);
-		      translate([outer,0]) square([10,9], center=true);
-		    }
-		  }
-		}
-		circle(2);
-		}
-	  circle(inner);
-	}
+difference() {
+  circle(outer_diameter/2, $fn=64);
+  circle(inner_diameter/2, $fn=64);
+  for (i=[0:num_fibers-1]) 
+    rotate([0,0,i*360/num_fibers]) 
+      translate([outer_diameter/2 - inset, 0]) 
+        circle(fiber_diameter/2, $fn=16);
 }
-
