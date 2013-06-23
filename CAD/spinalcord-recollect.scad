@@ -5,6 +5,7 @@ inset = 10;
 num_fibers = 30;
 i = 10;
 
+linear_extrude(5)
 difference() {
   circle(outer_diameter/2, $fn=64);
   circle(inner_diameter/2, $fn=64);
