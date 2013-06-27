@@ -1029,6 +1029,7 @@ Audio, scart, microphone, headphone&lt;p&gt;
 <sheets>
 <sheet>
 <plain>
+<text x="182.88" y="63.5" size="5.08" layer="91">1</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="88.9" y="-22.86"/>
