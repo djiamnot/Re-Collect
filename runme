@@ -1,4 +1,5 @@
 #!/bin/bash
 echo "We are here:"
 echo $(pwd)
-/Applications/Pd-extended.app/Contents/Resources/bin/pdextended -channels 10 -path rj:abs _main.pd
+#/Applications/Pd-extended.app/Contents/Resources/bin/pdextended -channels 10 -path rj:abs _main.pd
+pd-extended -channels 8 -jack -r 48000 -path rj:abs _main.pd
