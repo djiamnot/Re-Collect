@@ -1,0 +1,38 @@
+#N canvas 3 75 450 300 10;
+#X obj 19 13 cnv 15 150 200 empty empty PIR 20 12 0 14 -203904 -66577
+0;
+#X obj 24 107 abs/convert.ascii2pd CR;
+#X obj 24 86 comport 32 57600;
+#X msg 24 39 devices;
+#X msg 32 60 open \$1;
+#X floatatom 85 60 5 0 0 0 - - -;
+#X obj 24 169 route 0 1 2 3 4 5;
+#X obj 24 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 40 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 57 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 73 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 90 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 106 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 192 230 print TEST_PIR;
+#X obj 24 148 l2i;
+#X obj 24 129 route LF;
+#X connect 1 0 15 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 4 0 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 6 1 8 0;
+#X connect 6 2 9 0;
+#X connect 6 3 10 0;
+#X connect 6 4 11 0;
+#X connect 6 5 12 0;
+#X connect 14 0 6 0;
+#X connect 14 0 13 0;
+#X connect 15 1 14 0;
