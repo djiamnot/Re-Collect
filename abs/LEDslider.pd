@@ -1,0 +1,8 @@
+#N canvas 323 169 450 300 10;
+#X obj 44 46 vsl 10 80 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 44 137 expr 255 * pow(($f1 * 0.8 + 0.2) \, 1.75);
+#X obj 44 157 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X coords 0 -1 1 1 12 86 2 43 43;
