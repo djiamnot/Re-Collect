@@ -1,6 +1,6 @@
 // Yep, this is actually -*- c++ -*-
 
-#define PIR_START_PIN 3
+#define PIR_START_PIN 2
 #define NUM_PIR_SENSORS 6
 
 bool buffer[NUM_PIR_SENSORS];
