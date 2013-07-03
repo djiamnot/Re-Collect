@@ -1,4 +1,4 @@
-#N canvas 135 75 984 665 10;
+#N canvas 37 75 984 665 10;
 #X msg 137 386 devices;
 #X obj 168 463 vsl 15 80 0 255 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
@@ -19,7 +19,7 @@
 #X coords 0 1 512 0 200 140 1 0 0;
 #X restore 604 78 graph;
 #X obj 82 173 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 10600 1;
 #X obj 78 201 dbtorms;
 #X obj 52 227 *~;
 #X obj 75 142 abs/spectrum.mmb~ \$0-spec;
@@ -57,7 +57,7 @@ as a stream;
 #X text 424 104 start-frame delimiter;
 #X obj 182 313 tgl 15 0 empty empty DEBUG 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 52 257 dac~ 1 2 3 4 5 6;
+#X obj 41 280 dac~ 1 2 3 4 5 6;
 #X msg 119 528 help;
 #X obj 366 548 route data;
 #X obj 276 571 print info;
@@ -65,6 +65,9 @@ as a stream;
 #X obj 86 579 abs/convert.ascii2pd CR;
 #X obj 86 558 comport 32 57600;
 #X obj 598 375 gui.VUmeters8;
+#X obj 144 251 *~ 1;
+#X obj 168 228 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X connect 0 0 56 0;
 #X connect 1 0 56 0;
 #X connect 6 0 56 0;
@@ -77,7 +80,7 @@ as a stream;
 #X connect 17 0 50 2;
 #X connect 17 0 50 3;
 #X connect 17 0 50 4;
-#X connect 17 0 50 5;
+#X connect 17 0 58 0;
 #X connect 19 0 32 0;
 #X connect 20 0 21 0;
 #X connect 21 0 44 0;
@@ -110,3 +113,5 @@ as a stream;
 #X connect 55 0 11 0;
 #X connect 56 0 55 0;
 #X connect 56 1 53 0;
+#X connect 58 0 50 5;
+#X connect 59 0 58 1;
