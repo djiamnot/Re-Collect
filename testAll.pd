@@ -1,5 +1,5 @@
-#N canvas 4 75 826 454 10;
-#X obj 19 13 cnv 15 150 200 empty empty PIR 20 12 0 14 -203904 -66577
+#N canvas 172 94 826 454 10;
+#X obj 20 13 cnv 15 150 200 empty empty PIR 20 12 0 14 -203904 -66577
 0;
 #X obj 24 107 abs/convert.ascii2pd CR;
 #X obj 24 86 comport 32 57600;
@@ -15,44 +15,90 @@
 1;
 #X obj 73 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 90 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 90 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 106 190 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 24 148 l2i;
 #X obj 24 129 route LF;
-#X obj 272 25 abs/LEDslider;
-#X obj 282 25 abs/LEDslider;
-#X obj 292 25 abs/LEDslider;
-#X obj 302 25 abs/LEDslider;
-#X obj 312 25 abs/LEDslider;
-#X obj 322 25 abs/LEDslider;
-#X obj 332 25 abs/LEDslider;
-#X obj 342 25 abs/LEDslider;
-#X obj 352 25 abs/LEDslider;
-#X obj 362 25 abs/LEDslider;
-#X obj 372 25 abs/LEDslider;
-#X obj 382 25 abs/LEDslider;
-#X obj 392 25 abs/LEDslider;
-#X obj 402 25 abs/LEDslider;
-#X obj 412 25 abs/LEDslider;
-#X obj 422 25 abs/LEDslider;
-#X obj 432 25 abs/LEDslider;
-#X obj 442 25 abs/LEDslider;
-#X obj 452 25 abs/LEDslider;
-#X obj 462 25 abs/LEDslider;
-#X obj 472 25 abs/LEDslider;
-#X obj 482 25 abs/LEDslider;
-#X obj 492 25 abs/LEDslider;
-#X obj 502 25 abs/LEDslider;
-#X obj 512 25 abs/LEDslider;
-#X obj 522 25 abs/LEDslider;
-#X obj 532 25 abs/LEDslider;
-#X obj 542 25 abs/LEDslider;
-#X obj 552 25 abs/LEDslider;
-#X obj 562 25 abs/LEDslider;
-#X obj 245 117 pack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+#X obj 173 13 cnv 15 580 210 empty empty LEDs 20 12 0 14 -203904 -66577
+0;
+#X obj 184 201 comport 33 57600;
+#X obj 290 166 prepend set;
+#X msg 290 188 7 7 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 7 7;
+#X obj 184 107 pack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0;
+#N canvas 0 0 450 300 (subpatch) 0;
+#X array \$0-LED 30 float 3;
+#A 0 -0.00712925 -0.00712925 -0.00712925 1.36495e-05 0.00715655 0.0142995
+0.00715655 0.00715655 0.0142995 0.0142995 0.0214424 0.0214424 0.0214424
+0.0214424 0.0285853 0.0214424 0.0214424 0.0142995 0.0142995 0.0142995
+0.0142995 0.0142995 0.0142995 0.0142995 0.0142995 0.0142995 0.0142995
+0.0142995 0.0142995 0.0214424;
+#X coords 0 1 29 0 200 140 1 0 0;
+#X restore 543 28 graph;
+#X obj 184 181 prepend 255;
+#X obj 290 146 r \$0-vizu;
+#X obj 184 141 s \$0-vizu;
+#X obj 184 161 r \$0-vizu;
+#X obj 402 139 cnv 15 120 40 empty empty Table_based 20 12 0 14 -204800
+-66577 0;
+#N canvas 3 75 450 300 read-table 0;
+#X obj 92 120 tabread \$0-LED;
+#X obj 92 58 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 92 100 counter 30;
+#X obj 92 161 int;
+#X obj 92 140 expr 127 * pow(($f1 * 0.8 + 0.2) \, 1.75);
+#X obj 92 78 metro 10;
+#X obj 92 183 list-group 31;
+#X obj 92 203 s \$0-vizu;
+#X obj 92 29 inlet;
+#X connect 0 0 4 0;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 5 0 2 0;
+#X connect 6 0 7 0;
+#X connect 8 0 1 0;
+#X restore 430 160 pd read-table;
+#X obj 412 160 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 174 66 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 174 86 metro 100;
+#X obj 242 17 abs/LEDslider 2;
+#X obj 252 17 abs/LEDslider 3;
+#X obj 262 17 abs/LEDslider 4;
+#X obj 272 17 abs/LEDslider 5;
+#X obj 282 17 abs/LEDslider 6;
+#X obj 292 17 abs/LEDslider 7;
+#X obj 302 17 abs/LEDslider 8;
+#X obj 312 17 abs/LEDslider 9;
+#X obj 322 17 abs/LEDslider 10;
+#X obj 332 17 abs/LEDslider 11;
+#X obj 342 17 abs/LEDslider 12;
+#X obj 352 17 abs/LEDslider 13;
+#X obj 362 17 abs/LEDslider 14;
+#X obj 372 17 abs/LEDslider 15;
+#X obj 382 17 abs/LEDslider 16;
+#X obj 392 17 abs/LEDslider 17;
+#X obj 402 17 abs/LEDslider 18;
+#X obj 412 17 abs/LEDslider 19;
+#X obj 422 17 abs/LEDslider 20;
+#X obj 432 17 abs/LEDslider 21;
+#X obj 442 17 abs/LEDslider 22;
+#X obj 452 17 abs/LEDslider 23;
+#X obj 462 17 abs/LEDslider 24;
+#X obj 472 17 abs/LEDslider 25;
+#X obj 482 17 abs/LEDslider 26;
+#X obj 492 17 abs/LEDslider 27;
+#X obj 502 17 abs/LEDslider 28;
+#X obj 512 17 abs/LEDslider 29;
+#X obj 522 17 abs/LEDslider 30;
+#X obj 232 17 abs/LEDslider 1;
 #X connect 1 0 14 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
@@ -66,33 +112,41 @@
 #X connect 6 5 12 0;
 #X connect 13 0 6 0;
 #X connect 14 1 13 0;
-#X connect 15 0 45 0;
-#X connect 16 0 45 1;
-#X connect 17 0 45 2;
-#X connect 18 0 45 3;
-#X connect 19 0 45 4;
-#X connect 20 0 45 5;
-#X connect 21 0 45 6;
-#X connect 22 0 45 7;
-#X connect 23 0 45 8;
-#X connect 24 0 45 9;
-#X connect 25 0 45 10;
-#X connect 26 0 45 11;
-#X connect 27 0 45 12;
-#X connect 28 0 45 13;
-#X connect 29 0 45 14;
-#X connect 30 0 45 15;
-#X connect 31 0 45 16;
-#X connect 32 0 45 17;
-#X connect 33 0 45 18;
-#X connect 34 0 45 19;
-#X connect 35 0 45 20;
-#X connect 36 0 45 21;
-#X connect 37 0 45 22;
-#X connect 38 0 45 23;
-#X connect 39 0 45 24;
-#X connect 40 0 45 25;
-#X connect 41 0 45 26;
-#X connect 42 0 45 27;
-#X connect 43 0 45 28;
-#X connect 44 0 45 29;
+#X connect 17 0 18 0;
+#X connect 19 0 23 0;
+#X connect 21 0 16 0;
+#X connect 22 0 17 0;
+#X connect 24 0 21 0;
+#X connect 27 0 26 0;
+#X connect 28 0 29 0;
+#X connect 29 0 19 0;
+#X connect 30 0 19 1;
+#X connect 31 0 19 2;
+#X connect 32 0 19 3;
+#X connect 33 0 19 4;
+#X connect 34 0 19 5;
+#X connect 35 0 19 6;
+#X connect 36 0 19 7;
+#X connect 37 0 19 8;
+#X connect 38 0 19 9;
+#X connect 39 0 19 10;
+#X connect 40 0 19 11;
+#X connect 41 0 19 12;
+#X connect 42 0 19 13;
+#X connect 43 0 19 14;
+#X connect 44 0 19 15;
+#X connect 45 0 19 16;
+#X connect 46 0 19 17;
+#X connect 47 0 19 18;
+#X connect 48 0 19 19;
+#X connect 49 0 19 20;
+#X connect 50 0 19 21;
+#X connect 51 0 19 22;
+#X connect 52 0 19 23;
+#X connect 53 0 19 24;
+#X connect 54 0 19 25;
+#X connect 55 0 19 26;
+#X connect 56 0 19 27;
+#X connect 57 0 19 28;
+#X connect 58 0 19 29;
+#X connect 59 0 19 0;
