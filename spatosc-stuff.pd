@@ -1,0 +1,592 @@
+#N canvas 96 75 1016 665 10;
+#X obj 25 429 tgl 20 0 empty empty success 25 10 0 10 -258113 -1 -1
+0 1;
+#X floatatom 569 203 5 0 0 0 - - -;
+#X floatatom 608 203 5 0 0 0 - - -;
+#X floatatom 647 203 5 0 0 0 - - -;
+#X text 24 -124 [spatosc] Creates a spatosc audio scene and allows
+one to create sound source nodes and listeners in a 3D virtual audio
+environment.;
+#N canvas 0 22 290 211 pack3f 0;
+#X obj 79 103 pack f f f;
+#X obj 99 73 t b f;
+#X obj 144 71 t b f;
+#X obj 63 44 inlet;
+#X obj 110 41 inlet;
+#X obj 162 45 inlet;
+#X obj 80 137 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 0 2;
+#X connect 3 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X restore 569 223 pd pack3f;
+#X msg 126 86 removeTranslator default;
+#X obj 19 602 netreceive 31337 1;
+#X floatatom 608 357 5 0 0 0 - - -;
+#X floatatom 646 359 5 0 0 0 - - -;
+#X floatatom 685 359 5 0 0 0 - - -;
+#N canvas 0 22 290 211 pack3f 0;
+#X obj 79 103 pack f f f;
+#X obj 99 73 t b f;
+#X obj 144 71 t b f;
+#X obj 63 44 inlet;
+#X obj 110 41 inlet;
+#X obj 162 45 inlet;
+#X obj 80 137 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 0 2;
+#X connect 3 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X restore 607 379 pd pack3f;
+#X msg 553 166 createListener ear;
+#X msg 569 243 setPosition mySound \$1 \$2 \$3;
+#X msg 607 400 setPosition ear \$1 \$2 \$3;
+#X obj 19 643 print viaFudi;
+#X obj 114 629 list split 2;
+#X obj 114 704 unpack s s;
+#X symbolatom 114 731 10 0 0 0 - - -;
+#X symbolatom 180 730 10 0 0 0 - - -;
+#X obj 250 706 unpack f f f;
+#X floatatom 250 730 5 0 0 0 - - -;
+#X floatatom 295 731 5 0 0 0 - - -;
+#X floatatom 334 730 5 0 0 0 - - -;
+#X obj 114 682 list trim;
+#X obj 250 685 route xyz;
+#X obj 250 664 list trim;
+#X text 16 567 If you choose the FudiTranslator \, it's easy to receive
+messages with [netreceive]:;
+#X text 657 93 <-- Create a sound source;
+#X text 680 167 <-- Create a listener;
+#X obj 85 382 r toSpatOSC;
+#X msg 535 94 createSource mySound;
+#X obj 26 512 spatosc DmitriTranslator osc.udp://localhost:18033;
+#X msg 80 353 debug;
+#X msg 34 20 addTranslator fudi FudiTranslator localhost:31337;
+#X text 120 352 <- full debug (prints to console only \, not pd window)
+;
+#X text 79 407 Usage: [spatosc s:translator s:oscUrl];
+#X msg 26 487 debug;
+#X text 72 492 (note this is a different audio scene);
+#X text 78 475 Example object creation using arguments:;
+#X obj 449 525 s toSpatOSC;
+#X msg 525 69 clearScene;
+#X text 619 70 <-- Clear the whole scene;
+#X obj 436 -119 cnv 15 250 150 empty empty More_info: 10 12 1 12 -228856
+-128992 0;
+#N canvas 49 75 847 292 HOW_TO_SET_NODE_PROPERTIES 0;
+#X msg 141 -109 setNodeStringProperty mySound foo bar;
+#X msg 141 -80 removeNodeStringProperty mySound foo;
+#X msg 143 -29 removeNodeIntProperty mySound channel;
+#X text 368 -109 <-- Add / remove string properties (node must exist)
+;
+#X text 376 -49 <-- Add / remove int properties (node must exist);
+#X text 433 42 <-- Add / remove int properties (node must exist);
+#X msg 144 -50 setNodeIntProperty mySound channel 4;
+#X obj 43 117 s toSpatOSC;
+#X msg 146 42 setNodeFloatProperty mySound transposition \$1;
+#X floatatom 147 16 5 0 0 0 - - -;
+#X msg 146 64 removeNodeFloatProperty mySound transposition;
+#X connect 0 0 7 0;
+#X connect 1 0 7 0;
+#X connect 2 0 7 0;
+#X connect 6 0 7 0;
+#X connect 8 0 7 0;
+#X connect 9 0 8 0;
+#X connect 10 0 7 0;
+#X restore 464 -80 pd HOW_TO_SET_NODE_PROPERTIES;
+#N canvas 43 124 450 300 ABOUT_SCHEDULING 0;
+#X obj 235 187 bng 15 250 50 0 empty empty output_messages 17 7 0 10
+-262144 -1 -1;
+#X msg 114 175 setSynchronous \$1;
+#X obj 114 149 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 165 223 s toSpatOSC;
+#X obj 236 132 == 0;
+#X obj 236 161 metro 30;
+#X text 39 30 By default \, SpatOSC operates in "synchronous" mode
+\, meaning that every time a node or connection's state changes \,
+an OSC message will go out immediately (well \, only if the value actually
+changes). By disabling synchronous mode \, you must manually bang the
+object to emit changes via OSC. This can let you manage network load
+more precisely.;
+#X connect 0 0 3 0;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 2 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X restore 464 -59 pd ABOUT_SCHEDULING;
+#N canvas 1106 316 814 445 PHYSICAL_MODELLING_FACTORS 0;
+#X obj 35 5 cnv 15 300 400 empty empty connection_features 20 12 0
+14 -233017 -66577 0;
+#X msg 132 133 0;
+#X text 166 130 no effect;
+#X msg 142 150 100;
+#X text 171 149 normal;
+#X text 185 167 more extreme;
+#X msg 132 193 setDopplerFactor mySound ear \$1;
+#X obj 80 352 s toSpatOSC;
+#X msg 152 167 200;
+#X msg 111 39 0;
+#X text 147 38 no effect;
+#X msg 121 56 100;
+#X text 150 55 normal;
+#X text 164 73 more extreme;
+#X msg 131 73 200;
+#X msg 111 99 setDistanceFactor mySound ear \$1;
+#X msg 135 221 0;
+#X text 169 218 no effect;
+#X msg 145 238 100;
+#X text 174 237 normal;
+#X text 188 255 more extreme;
+#X msg 155 255 200;
+#X obj 390 6 cnv 15 360 400 empty empty when_sources_are_near_(option)
+20 12 0 14 -233017 -66577 0;
+#X msg 408 137 setRadius mySound \$1;
+#X floatatom 409 115 5 0 0 1 meters - -;
+#X floatatom 427 172 5 0.0001 10 1 scaler_(applied_to_radius_meters)
+- -;
+#X msg 426 194 setTransitionRadiusFactor mySound \$1;
+#X obj 407 226 s toSpatOSC;
+#X msg 135 281 setDirectivityFactor mySound ear \$1;
+#X text 400 38 when a source is within a certain radius of the listener
+\, the connection effects of distance attenuation and rolloff attenuation/filtering
+can be supressed. The "transitionRadiousFactor" describes a larger
+radious \, over which \, the rolloff effect is scaled back to normal.
+;
+#X obj 412 371 s toSpatOSC;
+#X msg 412 300 0;
+#X floatatom 412 329 5 -40 0 1 maxClip_db - -;
+#X msg 412 348 setMaxGainClip mySound ear \$1;
+#X msg 442 301 -24;
+#X text 405 264 Useful when sounds come "too close";
+#X text 405 283 clips connection output level to N db;
+#X connect 1 0 6 0;
+#X connect 3 0 6 0;
+#X connect 6 0 7 0;
+#X connect 8 0 6 0;
+#X connect 9 0 15 0;
+#X connect 11 0 15 0;
+#X connect 14 0 15 0;
+#X connect 15 0 7 0;
+#X connect 16 0 28 0;
+#X connect 18 0 28 0;
+#X connect 21 0 28 0;
+#X connect 23 0 27 0;
+#X connect 24 0 23 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 28 0 7 0;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 33 0 30 0;
+#X connect 34 0 32 0;
+#X restore 464 -38 pd PHYSICAL_MODELLING_FACTORS;
+#N canvas 98 75 923 460 ADVANCED_CONNECTION_FEATURES 0;
+#X msg 80 78 \; toSpatOSC setAutoConnect \$1;
+#X obj 80 53 tgl 15 1 empty empty auto-connect 17 7 1 12 -262144 -1
+-1 1 1;
+#X msg 78 196 \; toSpatOSC setConnectFilter \$1;
+#X obj 78 171 symbol;
+#X msg 77 132 ear;
+#X msg 113 133 ignore;
+#X msg 516 217 createListener ear;
+#X text 636 183 <-- Create a sound source;
+#X text 646 217 <-- Create a listener;
+#X msg 514 182 createSource mySound;
+#X msg 517 248 connect mySound ear;
+#X text 643 249 <-- Connect source to listener;
+#X text 644 283 <-- Disconnect source from listener;
+#X obj 463 340 s toSpatOSC;
+#X msg 471 93 clearScene;
+#X msg 495 138 setAutoConnect 0;
+#X text 74 7 autoconnect us on by default \, so connections are automatically
+made between all sources and listener(s).;
+#X text 468 17 However \, in sum cases \, it may be necessary to create
+connections explicitly among sources and listener(s). In ssuch a case
+\, the following messages can be used;
+#X text 551 91 (clear the scene and start fresh for this example);
+#X text 603 137 <-- Disable automatic connections;
+#X msg 516 285 disconnect mySound ear;
+#X connect 1 0 0 0;
+#X connect 3 0 2 0;
+#X connect 4 0 3 0;
+#X connect 5 0 3 0;
+#X connect 6 0 13 0;
+#X connect 9 0 13 0;
+#X connect 10 0 13 0;
+#X connect 14 0 13 0;
+#X connect 15 0 13 0;
+#X connect 20 0 13 0;
+#X restore 464 -15 pd ADVANCED_CONNECTION_FEATURES;
+#X text 22 -78 The spatosc library sends spatial audio updates via
+OpenSoundControl (OSC) to various spatializers \, as long as there
+exists a compatible "translator" (kind of like a plugin) in the library.
+;
+#X obj 447 578 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 22 -11 Choose a translator (note \, a "default" translator
+already exists);
+#X obj 469 599 OSCrx 18032;
+#X obj 435 710 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 284 54 <- this is the default one;
+#X text 316 66 (already exists);
+#X text 547 598 <- default;
+#X msg 137 153 removeTranslator tcpTest;
+#X msg 48 52 addTranslator default BasicTranslator osc.udp://localhost:18032
+;
+#X obj 25 407 spatosc;
+#X obj 465 738 OSCrx 18033 tcp;
+#X obj 469 628 print RX-from_UDP_basicTranslator;
+#X obj 465 767 print RX-from_TCP_SceneContentsTranslator;
+#X text 52 201 sends out only scene Content Messages (e.g. create node)
+;
+#X msg 180 258 removeTranslator tcpContent;
+#X obj 440 639 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 562 667 <- tcpTest;
+#X obj 470 667 OSCrx 9999 tcp;
+#X text 567 736 <- tcpContent;
+#X obj 470 696 print RX-from_TCP_basicTranslator;
+#X text 442 556 Receiving from the BasicTranslator(s):;
+#X floatatom 607 435 5 0 0 0 - - -;
+#X floatatom 645 434 5 0 0 0 - - -;
+#X floatatom 684 434 5 0 0 0 - - -;
+#N canvas 0 22 290 211 pack3f 0;
+#X obj 79 103 pack f f f;
+#X obj 99 73 t b f;
+#X obj 144 71 t b f;
+#X obj 63 44 inlet;
+#X obj 110 41 inlet;
+#X obj 162 45 inlet;
+#X obj 80 137 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 0 2;
+#X connect 3 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X restore 606 454 pd pack3f;
+#X msg 606 475 setOrientation ear \$1 \$2 \$3;
+#X text 690 203 <-- change source position;
+#X text 726 356 <-- change listener position;
+#N canvas 1024 194 623 737 other 0;
+#X obj 62 100 s toSpatOSC;
+#X text 71 347 (Azimuth Elevation Distance): alternative way to specify
+position of sources and listeners;
+#X msg 62 67 setActive mySound \$1;
+#X obj 62 42 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 205 47 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 206 69 setActive ear \$1;
+#X text 60 19 enables/disables all connections with named node;
+#X floatatom 253 380 5 0 0 0 - - -;
+#X floatatom 291 379 5 0 0 0 - - -;
+#X floatatom 329 381 5 0 0 0 - - -;
+#N canvas 0 22 290 211 pack3f 0;
+#X obj 79 103 pack f f f;
+#X obj 99 73 t b f;
+#X obj 144 71 t b f;
+#X obj 63 44 inlet;
+#X obj 110 41 inlet;
+#X obj 162 45 inlet;
+#X obj 80 137 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 0 2;
+#X connect 3 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X restore 252 400 pd pack3f;
+#X msg 252 421 setPositionAED mySound \$1 \$2 \$3;
+#X floatatom 74 383 5 0 0 0 - - -;
+#X floatatom 112 383 5 0 0 0 - - -;
+#X floatatom 150 384 5 0 0 0 - - -;
+#N canvas 0 22 290 211 pack3f 0;
+#X obj 79 103 pack f f f;
+#X obj 99 73 t b f;
+#X obj 144 71 t b f;
+#X obj 63 44 inlet;
+#X obj 110 41 inlet;
+#X obj 162 45 inlet;
+#X obj 80 137 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 0 2;
+#X connect 3 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X restore 73 402 pd pack3f;
+#X msg 73 423 setPositionAED ear \$1 \$2 \$3;
+#X obj 130 538 s toSpatOSC;
+#X obj 65 308 s toSpatOSC;
+#X obj 65 230 metro 200;
+#X obj 126 230 timer;
+#X obj 64 211 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 59 164 aribitrary events can be sent "through" to nodes on
+the target audio renderer(s) [note: the state of the event is not stored
+in the audio sceene];
+#X obj 294 246 symbol;
+#X msg 294 273 sendNodeEvent mySound \$1;
+#X msg 69 253 sendNodeEvent ear timeCode \$1;
+#X msg 290 207 start;
+#X msg 338 209 stop;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 7 0 10 0;
+#X connect 8 0 10 1;
+#X connect 9 0 10 2;
+#X connect 10 0 11 0;
+#X connect 11 0 17 0;
+#X connect 12 0 15 0;
+#X connect 13 0 15 1;
+#X connect 14 0 15 2;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 19 0 20 1;
+#X connect 20 0 25 0;
+#X connect 21 0 19 0;
+#X connect 23 0 24 0;
+#X connect 24 0 18 0;
+#X connect 25 0 18 0;
+#X connect 26 0 23 0;
+#X connect 27 0 23 0;
+#X restore 464 8 pd other;
+#X text 732 430 <-- change listener orientation;
+#X text 715 273 <-- change source orientation;
+#X floatatom 593 274 5 0 0 0 - - -;
+#X floatatom 631 273 5 0 0 0 - - -;
+#X floatatom 670 273 5 0 0 0 - - -;
+#N canvas 0 22 290 211 pack3f 0;
+#X obj 79 103 pack f f f;
+#X obj 99 73 t b f;
+#X obj 144 71 t b f;
+#X obj 63 44 inlet;
+#X obj 110 41 inlet;
+#X obj 162 45 inlet;
+#X obj 80 137 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 0 0;
+#X connect 2 1 0 2;
+#X connect 3 0 0 0;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X restore 592 293 pd pack3f;
+#X msg 592 314 setOrientation mySound \$1 \$2 \$3;
+#N canvas 719 172 721 728 sourceNode_directivity 0;
+#X msg -12 190 setDirectivity mySound omni omni;
+#X msg -197 118 printDirectivities;
+#X text -298 -159 by default sound source nodes are omnidirectional
+\, emitting sound in all directions. The following messages allow sound
+source nodes to emit sound directionally.;
+#X msg -268 58 setDirectivity mySound omni omni;
+#X obj -173 188 s toSpatOSC;
+#X text -272 23 usage: setDirectivity nodeName lateralDirectivity verticalDirectivity
+;
+#X text -300 -93 spatOSC provides four preset directivity patterns
+to choose from: OMMI \, cardoid \, superCardoid \, cone and hemisphere.
+;
+#X text -300 -51 A node uses twp patterns to define its directivity:
+one lateral \, and one vertival. Both are combined to form a 3-D shape
+that determines how the source's sound is emitted.;
+#X text -68 60 <-the node fully omnidirectional;
+#X msg -12 159 setDirectivity mySound cone cone;
+#X msg -13 97 setDirectivity mySound cardioid cardioid;
+#X msg -12 128 setDirectivity mySound hypercardioid hypercardioid;
+#X msg -11 215 setDirectivity mySound hemisphere hemisphere;
+#X msg -11 245 setDirectivity mySound omni cone;
+#X msg -98 353 createDirectivity sheefa 1 1 1 1 1 1 1 1 1 1 1 1 1 0
+0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X text -94 319 usage: createDirectivity tableName v1 v2 ....... vn
+\, where 0 <= v <= 1;
+#X text -98 394 the values in the table \, used to describe a table
+from 0 to pi \, represent a directivity (rolloff) function [unit scale
+from 0 to 1];
+#X connect 0 0 4 0;
+#X connect 1 0 4 0;
+#X connect 3 0 4 0;
+#X connect 9 0 4 0;
+#X connect 10 0 4 0;
+#X connect 11 0 4 0;
+#X connect 12 0 4 0;
+#X connect 13 0 4 0;
+#X connect 14 0 4 0;
+#X restore 527 9 pd sourceNode_directivity;
+#X obj 693 -118 spatOSC-basicRenderer;
+#X msg 543 135 setURI mySound plugin://looper1~;
+#N canvas 164 601 527 378 global-settings 0;
+#X obj 33 191 s toSpatOSC;
+#X msg 34 112 setSceneRotation 0 0 \$1;
+#X floatatom 34 79 5 0 0 0 - - -;
+#X msg 54 143 setSceneTranslation 0 0 0;
+#X text 21 16 use this message to change the global orientation and
+translation of the audio-scene. Useful for remapping the scene's axes
+to work with other 3D envrionments.;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
+#X restore 467 -101 pd global-settings;
+#X msg 53 120 addTranslator tcpTest BasicTranslator osc.tcp://localhost:18033
+;
+#X msg 56 220 addTranslator tcpContent SceneContentTranslator osc.tcp://localhost:18033
+;
+#X msg 612 507 \; mySound-ear.conn.plugin.patch vis 1;
+#N canvas 231 75 1018 665 audio_ctl 0;
+#X obj 550 181 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
+black red;
+#X obj 550 90 thisdir;
+#X obj 550 112 makefilename %s/snd;
+#X obj 552 70 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 550 134 location \$1;
+#X msg 112 90 20;
+#X obj 112 112 until;
+#X obj 112 134 counter 20;
+#X obj 112 156 moses 11;
+#X obj 112 178 t f f;
+#X obj 112 200 t a f;
+#X obj 112 414 pack f s;
+#N canvas 504 121 488 456 sines 0;
+#X obj 64 20 inlet;
+#X obj 91 85 s \$0-to-SPIN-TCP;
+#X obj 64 42 t f f;
+#X obj 64 108 t a b b;
+#X obj 103 130 expr random(7 \, 20);
+#X obj 83 150 expr random(1000 \, 10000) * 0.01;
+#X obj 83 173 *;
+#X obj 64 204 pack f f;
+#X obj 64 270 s toSpatOSC;
+#X msg 66 335 /snd\$1 setParam setMediaURI pyo://Sine \, /snd\$1 setParam
+mul 0.1 \, /snd\$1 setParam freq \$2;
+#X msg 64 236 setURI /snd\$1 pyo://Sine \, setNodeFloatProperty /snd\$1
+mul 0.1 \, setNodeFLoatProperty /snd\$1 freq \$2;
+#X msg 99 62 createSource snd\$1 \, connect snd\$1 listener0;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 11 0;
+#X connect 3 0 7 0;
+#X connect 3 1 5 0;
+#X connect 3 2 4 0;
+#X connect 4 0 6 1;
+#X connect 5 0 6 0;
+#X connect 6 0 7 1;
+#X connect 7 0 10 0;
+#X connect 10 0 8 0;
+#X connect 11 0 1 0;
+#X restore 182 165 pd sines;
+#X obj 276 542 print;
+#X obj 554 513 print playlist;
+#X msg 381 181 seek \$1;
+#X obj 262 12 inlet;
+#X obj 262 34 t b b b;
+#X obj 57 496 s toSpatOSC;
+#X obj 139 247 s toSpatOSC;
+#X obj 353 18 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 207 491 /snd\$1 setParam setMediaURI file://\$2;
+#X msg 112 466 setURI /snd\$1 file://\$2;
+#X msg 57 66 createListener listener0;
+#X msg 139 224 createSource snd\$1 \, connect snd\$1 listener0;
+#X connect 0 0 14 0;
+#X connect 0 0 11 1;
+#X connect 1 0 2 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 8 1 12 0;
+#X connect 9 0 10 0;
+#X connect 9 1 15 0;
+#X connect 10 0 11 0;
+#X connect 10 1 24 0;
+#X connect 11 0 22 0;
+#X connect 15 0 0 0;
+#X connect 16 0 17 0;
+#X connect 17 0 5 0;
+#X connect 17 1 23 0;
+#X connect 17 2 3 0;
+#X connect 20 0 17 0;
+#X connect 22 0 13 0;
+#X connect 22 0 18 0;
+#X connect 23 0 18 0;
+#X connect 24 0 19 0;
+#X restore 405 132 pd audio_ctl;
+#X obj 404 114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 1 0 5 0;
+#X connect 2 0 5 1;
+#X connect 3 0 5 2;
+#X connect 5 0 13 0;
+#X connect 6 0 58 0;
+#X connect 7 0 15 0;
+#X connect 7 0 16 0;
+#X connect 8 0 11 0;
+#X connect 9 0 11 1;
+#X connect 10 0 11 2;
+#X connect 11 0 14 0;
+#X connect 12 0 40 0;
+#X connect 13 0 40 0;
+#X connect 14 0 40 0;
+#X connect 16 0 24 0;
+#X connect 16 1 26 0;
+#X connect 17 0 18 0;
+#X connect 17 1 19 0;
+#X connect 20 0 21 0;
+#X connect 20 1 22 0;
+#X connect 20 2 23 0;
+#X connect 24 0 17 0;
+#X connect 25 0 20 0;
+#X connect 26 0 25 0;
+#X connect 30 0 58 0;
+#X connect 31 0 40 0;
+#X connect 33 0 58 0;
+#X connect 34 0 58 0;
+#X connect 37 0 32 0;
+#X connect 41 0 40 0;
+#X connect 49 0 51 0;
+#X connect 52 0 59 0;
+#X connect 56 0 58 0;
+#X connect 57 0 58 0;
+#X connect 58 0 0 0;
+#X connect 59 0 61 0;
+#X connect 63 0 58 0;
+#X connect 64 0 66 0;
+#X connect 66 0 68 0;
+#X connect 70 0 73 0;
+#X connect 71 0 73 1;
+#X connect 72 0 73 2;
+#X connect 73 0 74 0;
+#X connect 74 0 40 0;
+#X connect 80 0 83 0;
+#X connect 81 0 83 1;
+#X connect 82 0 83 2;
+#X connect 83 0 84 0;
+#X connect 84 0 40 0;
+#X connect 87 0 40 0;
+#X connect 89 0 58 0;
+#X connect 90 0 58 0;
+#X connect 93 0 92 0;
