@@ -1,10 +1,10 @@
-#N canvas 88 357 450 300 10;
-#X obj 44 46 vsl 10 80 0 1 0 0 empty empty \$1 0 40 1 9 -262144 -1
--4160 0 1;
+#N canvas 88 351 450 300 10;
+#X obj 46 46 vsl 10 80 0 1 0 0 empty LED-\$1 \$1 0 40 1 9 -262144 -1
+-4160 1500 1;
 #X obj 44 179 outlet;
 #X obj 44 158 int;
 #X obj 44 137 expr 127 * pow(($f1 * 0.8 + 0.2) \, 1.75);
 #X connect 0 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 2 0;
-#X coords 0 -1 1 1 12 86 2 43 43;
+#X coords 0 -1 1 1 13 86 2 44 43;
