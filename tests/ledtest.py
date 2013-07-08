@@ -6,7 +6,7 @@ import time
 import math
 
 # Arduino in the box
-serialport = '/dev/ttyUSB1'
+serialport = '/dev/ttyUSB0'
 # Development Arduino
 #serialport = '/dev/tty.usbmodemfa141'
 
