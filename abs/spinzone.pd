@@ -1,4 +1,4 @@
-#N canvas 352 126 669 496 10;
+#N canvas 352 123 669 496 10;
 #X declare -lib mrpeach;
 #X obj 57 17 route setOrientation;
 #X obj 57 39 unpack f f f;
@@ -19,8 +19,10 @@
 #X obj 57 -25 r \$1-from-SPIN;
 #X obj 57 -4 routeOSC /spinner\$2;
 #X obj 126 80 sel \$2;
-#X obj 127 296 s LED-\$2;
 #X obj 274 -15 import mrpeach;
+#X obj 127 296 s LED-\$3;
+#X text 81 357 sound spinner controls a LED;
+#X text 81 390 args: <spinner #> <LED# to control>;
 #X connect 0 0 1 0;
 #X connect 1 2 2 0;
 #X connect 2 0 16 0;
@@ -36,7 +38,7 @@
 #X connect 10 0 11 1;
 #X connect 11 0 12 0;
 #X connect 12 0 13 0;
-#X connect 13 0 17 0;
+#X connect 13 0 18 0;
 #X connect 14 0 15 0;
 #X connect 15 0 0 0;
 #X connect 16 0 3 0;
