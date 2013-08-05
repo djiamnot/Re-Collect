@@ -1,4 +1,4 @@
-#N canvas 619 90 1195 707 10;
+#N canvas 722 335 1195 707 10;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
@@ -27,7 +27,7 @@
 #X declare -lib mrpeach;
 #X obj 5 -114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 3 75 1009 665 audio_ctl+spin 0;
+#N canvas 3 77 1009 665 audio_ctl+spin 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -207,7 +207,7 @@ file://\$2 \, /snd\$1 setParam loop 0 \, /snd\$1 setParam stop 1;
 #X obj 5 -134 del 2000;
 #X msg 132 223 /snd\$1 setParam play 1 \, /snd\$1 setParam speed 1
 ;
-#N canvas 3 77 1009 665 pulsars 0;
+#N canvas 647 411 1009 665 pulsars 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -330,6 +330,136 @@ setMediaURI plugin://PulsarSampler \, /pulse\$1 setParam path \$2 \,
 #X msg 787 408 /pulse\$1 setParam lfo_freq \$1 \, /pulse\$1 setParam
 lfo_add \$2 \, /pulse\$1 setParam lfo_mul \$3 \, /pulse\$1 setParam
 freq \$4;
+#X obj 761 -119 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 647 401 1009 665 MicroLoops 1;
+#X msg 57 67 createNode listener0 Listener;
+#X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
+black red;
+#X obj 550 40 thisdir;
+#X obj 550 62 makefilename %s/snd;
+#X obj 552 20 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 550 84 location \$1;
+#X obj 112 112 until;
+#X obj 222 156 moses 11;
+#X obj 112 178 t f f;
+#X obj 57 496 s \$0-to-SPIN-TCP;
+#X obj 139 247 s \$0-to-SPIN-TCP;
+#X obj 112 200 t a f;
+#X obj 112 414 pack f s;
+#N canvas 273 156 488 456 sines 0;
+#X obj 64 20 inlet;
+#X obj 91 85 s \$0-to-SPIN-TCP;
+#X obj 64 42 t f f;
+#X obj 64 270 s \$0-to-SPIN-TCP;
+#X obj 64 108 t a b b;
+#X obj 103 130 expr random(7 \, 20);
+#X obj 83 150 expr random(1000 \, 10000) * 0.01;
+#X obj 83 173 *;
+#X obj 64 204 pack f f;
+#X msg 64 236 /snd\$1 setParam setMediaURI pyo://Sine \, /snd\$1 setParam
+mul 0.1 \, /snd\$1 setParam freq \$2;
+#X msg 91 63 createNode snd\$1 SoundNode \, /snd\$1 setParent con\$1
+;
+#X connect 0 0 2 0;
+#X connect 2 0 4 0;
+#X connect 2 1 10 0;
+#X connect 4 0 8 0;
+#X connect 4 1 6 0;
+#X connect 4 2 5 0;
+#X connect 5 0 7 1;
+#X connect 6 0 7 0;
+#X connect 7 0 8 1;
+#X connect 8 0 9 0;
+#X connect 9 0 3 0;
+#X connect 10 0 1 0;
+#X restore 292 165 pd sines;
+#X obj 276 542 print;
+#X obj 550 435 print playlist;
+#X msg 381 181 seek \$1;
+#X obj 262 12 inlet;
+#X obj 262 34 t b b b;
+#X text 199 315 Offset the sound by 4m along the y-axis so that it
+appears to orbit around the spinner:;
+#X obj 150 319 t f f;
+#X obj 162 391 s \$0-to-SPIN-TCP;
+#X obj 135 289 moses 5;
+#X obj 221 203 sel 1;
+#X obj 112 134 counter 30;
+#X msg 112 90 30;
+#X msg 139 224 createNode ml\$1 SoundNode;
+#X msg 162 369 /ml\$1 setParent spinner\$1 \, /ml\$1 setTranslation
+0 4 0;
+#X obj 238 13 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 175 89 0;
+#X obj 199 114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 113 446 /ml\$1 setDirectivityFlag 1 \, /ml\$1 setParam setMediaURI
+plugin://MicroLooper \, /ml\$1 setParam path \$2 \, /ml\$1 setParam
+stop 1;
+#X connect 0 0 9 0;
+#X connect 1 0 15 0;
+#X connect 1 0 12 1;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 4 0 2 0;
+#X connect 5 0 1 0;
+#X connect 6 0 24 0;
+#X connect 7 0 8 0;
+#X connect 7 1 13 0;
+#X connect 8 0 11 0;
+#X connect 8 1 16 0;
+#X connect 11 0 12 0;
+#X connect 11 0 22 0;
+#X connect 11 1 26 0;
+#X connect 12 0 31 0;
+#X connect 16 0 1 0;
+#X connect 17 0 18 0;
+#X connect 18 0 25 0;
+#X connect 18 1 0 0;
+#X connect 18 2 4 0;
+#X connect 20 0 27 0;
+#X connect 22 1 20 0;
+#X connect 24 0 8 0;
+#X connect 24 2 23 0;
+#X connect 25 0 6 0;
+#X connect 26 0 10 0;
+#X connect 27 0 21 0;
+#X connect 28 0 18 0;
+#X connect 29 0 24 2;
+#X connect 30 0 24 0;
+#X connect 31 0 9 0;
+#X connect 31 0 14 0;
+#X restore 760 -94 pd MicroLoops;
+#N canvas 722 230 450 300 randombits 0;
+#X obj 114 35 inlet;
+#X obj 114 57 t f b b b;
+#X obj 114 149 pack f f f f;
+#X obj 114 171 outlet;
+#X obj 131 120 expr random(1 \, 500) * 0.1;
+#X obj 165 79 expr random(1 \, 1000)*0.1;
+#X obj 148 99 expr random(0 \, 70)*0.01;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 4 0;
+#X connect 1 2 6 0;
+#X connect 1 3 5 0;
+#X connect 2 0 3 0;
+#X connect 4 0 2 1;
+#X connect 5 0 2 3;
+#X connect 6 0 2 2;
+#X restore 919 -121 pd randombits;
+#X floatatom 917 -142 5 0 0 0 - - -;
+#X obj 800 18 s \$0-to-SPIN-TCP;
+#X obj 567 217 s \$0-to-SPIN-TCP;
+#X obj 919 -99 prepend set;
+#X msg 919 -77 13 47.6 0.5 50.4;
+#X msg 799 -16 /ml\$1 setParam pitch \$2 \, /ml\$1 setParam start \$3
+\, /ml\$1 setParam dur \$4 \, /ml\$1 setParam play 1;
+#X msg 959 46 /ml\$1 setParam stop 1;
+#X floatatom 956 25 5 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 2 0 26 0;
 #X connect 5 0 21 0;
@@ -355,13 +485,13 @@ freq \$4;
 #X connect 26 0 0 0;
 #X connect 27 0 4 0;
 #X connect 29 0 28 0;
-#X connect 30 0 4 0;
+#X connect 30 0 58 0;
 #X connect 31 0 30 0;
 #X connect 32 0 33 0;
 #X connect 33 0 35 0;
 #X connect 33 0 51 1;
 #X connect 33 1 37 0;
-#X connect 34 0 4 0;
+#X connect 34 0 58 0;
 #X connect 35 0 34 0;
 #X connect 37 0 35 1;
 #X connect 37 0 36 0;
@@ -383,3 +513,11 @@ freq \$4;
 #X connect 50 0 51 0;
 #X connect 51 0 52 0;
 #X connect 52 0 4 0;
+#X connect 53 0 54 0;
+#X connect 55 0 61 0;
+#X connect 55 0 59 0;
+#X connect 56 0 55 0;
+#X connect 59 0 60 0;
+#X connect 61 0 57 0;
+#X connect 62 0 57 0;
+#X connect 63 0 62 0;
