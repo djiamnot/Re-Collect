@@ -1,4 +1,4 @@
-#N canvas 12 75 1009 665 10;
+#N canvas 24 130 1575 903 10;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
@@ -27,7 +27,7 @@
 #X declare -lib mrpeach;
 #X obj 6 -84 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 3 75 1009 665 audio_ctl+spin 0;
+#N canvas 3 77 1009 665 audio_ctl+spin 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -349,7 +349,7 @@ stop 1;
 #X connect 30 1 29 0;
 #X connect 31 0 26 1;
 #X restore 760 -94 pd MicroLoops;
-#N canvas 109 138 450 300 randombits 0;
+#N canvas 109 137 450 300 randombits 0;
 #X obj 114 35 inlet;
 #X obj 114 57 t f b b b;
 #X obj 114 149 pack f f f f;
@@ -357,6 +357,9 @@ stop 1;
 #X obj 165 79 expr random(1 \, 1000)*0.1;
 #X obj 147 99 expr random(0 \, 70)*0.1;
 #X obj 131 120 expr random(1 \, 200) * 0.01;
+#X text 297 118 pitch;
+#X text 299 100 loop start;
+#X text 320 79 loop duration;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 1 6 0;
@@ -371,7 +374,7 @@ stop 1;
 #X obj 800 18 s \$0-to-SPIN-TCP;
 #X obj 551 217 s \$0-to-SPIN-TCP;
 #X obj 927 -121 prepend set;
-#X msg 927 -99 0 0.26 4.9 85.8;
+#X msg 927 -99 0 1.32 2.3 59.3;
 #X msg 799 -16 /ml\$1 setParam pitch \$2 \, /ml\$1 setParam start \$3
 \, /ml\$1 setParam dur \$4 \, /ml\$1 setParam play 1;
 #X msg 959 46 /ml\$1 setParam stop 1;
@@ -388,10 +391,10 @@ stop 1;
 #X obj 96 226 *;
 #X obj 96 102 t f b;
 #X obj 144 271 prepend set;
-#X msg 144 293 400 266.6;
+#X msg 144 293 213.2 300;
 #X floatatom 177 57 5 0 0 0 - - -;
 #X obj 264 250 prepend set;
-#X msg 264 272 11 5;
+#X msg 264 272 1 6;
 #X obj -2 341 outlet;
 #X obj 207 342 outlet;
 #X obj 93 9 inlet;
@@ -425,13 +428,13 @@ stop 1;
 #X restore 1028 -133 pd microChords;
 #X obj 1027 -152 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 1105 -104 400 266.6;
+#X msg 1105 -104 213.2 300;
 #X floatatom 1100 -158 5 0 0 0 - - -;
 #X obj 1035 -86 f;
 #X obj 1037 -112 t b a;
 #X obj 1036 -61 list append;
 #X obj 883 59 prepend set;
-#X msg 881 84 /ml4 event freq 400 266.6;
+#X msg 881 84 /ml1 event freq 213.2 300;
 #X obj 580 100 expr random(0 \, 1000)*0.1;
 #X obj 690 -201 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 1 1;
@@ -455,7 +458,7 @@ stop 1;
 #X floatatom 1202 -27 5 0 0 0 - - -;
 #X obj 1163 -31 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 12 75 1009 665 blits 0;
+#N canvas 165 346 1568 706 blits 0;
 #X obj 122 122 until;
 #X obj 122 520 s \$0-to-SPIN-TCP;
 #X obj 149 257 s \$0-to-SPIN-TCP;
@@ -486,11 +489,11 @@ plugin://ResoSine \, /blit\$1 setParam stop 1;
 #X obj 1100 237 t f b;
 #X obj 1100 383 list-group 4;
 #X obj 1148 406 prepend set;
-#X msg 1148 428 234.52 440 352 440;
+#X msg 1148 428 396 244.42 412.5 293.26;
 #X floatatom 1146 191 5 0 0 0 - - -;
 #X obj 1220 362 list-group 4;
 #X obj 1268 385 prepend set;
-#X msg 1268 407 1 11 7 11;
+#X msg 1268 407 9 2 10 5;
 #X obj 1100 215 f 220;
 #X obj 1230 628 s \$0-to-SPIN;
 #X obj 172 328 s \$0-to-SPIN-TCP;
@@ -707,7 +710,7 @@ black red;
 #X obj 6 -136 sel ReCollect;
 #X obj 186 -38 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 3 75 1009 665 Grannys 0;
+#N canvas 744 122 1009 665 Grannys 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -777,6 +780,7 @@ plugin://Granny \, /gr\$1 setParam path \$2 \, /gr\$1 setParam stop
 #X msg 112 90 1;
 #X obj 112 134 counter 1;
 #X msg 1114 102 0;
+#X floatatom 1099 140 5 0 0 0 - - -;
 #X connect 0 0 7 0;
 #X connect 1 0 12 0;
 #X connect 1 0 10 1;
@@ -834,6 +838,7 @@ plugin://Granny \, /gr\$1 setParam path \$2 \, /gr\$1 setParam stop
 #X connect 52 0 51 0;
 #X connect 53 0 31 0;
 #X connect 54 0 51 0;
+#X connect 54 0 60 0;
 #X connect 55 0 23 1;
 #X connect 56 0 41 1;
 #X connect 57 0 6 0;
@@ -842,15 +847,17 @@ plugin://Granny \, /gr\$1 setParam path \$2 \, /gr\$1 setParam stop
 #X connect 59 0 51 0;
 #X restore 185 -13 pd Grannys;
 #X obj 111 274 s granny;
-#X obj 420 98 r tick;
+#X obj 419 74 r tick;
 #X msg 419 179 /gr\$1 setParam stop 1;
 #X floatatom 419 160 5 0 0 0 - - -;
-#X obj 420 119 % 23;
+#X obj 419 95 % 23;
 #X obj 419 139 random 5;
 #X obj 1157 4 pack 0 -7;
 #X obj 115 241 expr random(0 \, 2);
 #X msg 951 -38 /ml\$1 event freq \$2 \$3;
 #X msg 229 214 0;
+#X obj 419 117 sel 0;
+#X obj 1290 -119 abs/ml-ctrl \$0;
 #X connect 0 0 1 0;
 #X connect 2 0 97 0;
 #X connect 4 0 18 0;
@@ -939,12 +946,11 @@ plugin://Granny \, /gr\$1 setParam path \$2 \, /gr\$1 setParam stop
 #X connect 91 0 8 0;
 #X connect 92 0 90 0;
 #X connect 94 0 93 0;
-#X connect 97 0 22 0;
 #X connect 98 0 99 0;
 #X connect 101 0 104 0;
 #X connect 102 0 52 0;
 #X connect 103 0 102 0;
-#X connect 104 0 105 0;
+#X connect 104 0 110 0;
 #X connect 105 0 103 0;
 #X connect 106 0 86 0;
 #X connect 107 0 10 0;
@@ -952,3 +958,4 @@ plugin://Granny \, /gr\$1 setParam path \$2 \, /gr\$1 setParam stop
 #X connect 108 0 51 0;
 #X connect 108 0 67 0;
 #X connect 109 0 100 0;
+#X connect 110 0 105 0;
