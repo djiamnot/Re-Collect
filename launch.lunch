@@ -1,0 +1,7 @@
+#!/usr/bin/env lunch
+
+#add_command("hdspmixer", identifier="hdspmixer")
+#add_command("jakd -R -dalsa -dhw0:0", identifier="jackd")
+add_command("spinserver --spatosc BasicTranslator osc.udp://localhost:18033 --scene-id ReCollect", identifier="spinserver")
+add_command("pyospat -p 18033 -L OCTO", identifier="pyospat")
+add_command("pd-extended -jack /home/mis/src/Re-Collect/spatViaSpin.pd", identifier="pd")
