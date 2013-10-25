@@ -7,6 +7,7 @@ add_command("spinserver --spatosc BasicTranslator osc.udp://sanoja.local:18033 -
             identifier="spinserver", 
             user="mis", 
             host="luoda.local",
+            ssh_port=223,
             env = {"DISPLAY":":0.0"})
 add_command("pyospat -p 18033 -L OCTO", identifier="pyospat")
 add_command("pd-extended -jack /home/mis/src/Re-Collect/spatViaSpin.pd", identifier="pd")
