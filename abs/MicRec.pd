@@ -1,0 +1,99 @@
+#N canvas 3 75 744 641 10;
+#X msg 244 140 createNode listener0 Listener;
+#X obj 132 148 t f b;
+#X msg 195 190 createNode recorder\$1 SoundNode;
+#X obj 132 79 t b b;
+#X obj 132 451 pack f f f s;
+#X obj 182 255 expr random(100 \, 500);
+#X obj 182 297 t f b f;
+#X obj 206 338 del;
+#X obj 221 319 * 1000;
+#X obj 435 371 date;
+#X obj 466 371 time;
+#X obj 435 350 t b b;
+#X obj 109 80 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 206 418 deleteNode recorder\$1;
+#X obj 206 398 i;
+#X obj 375 433 symbol;
+#X floatatom 295 298 5 0 0 0 - - -;
+#X obj 182 275 / 10;
+#X obj 242 339 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 24 585 prepend set;
+#X msg 24 607 0 0 41 20131027-20;
+#X obj 132 124 spigot 1;
+#X obj 132 170 t a a b b f;
+#X text 401 190 create SoundNode;
+#X text 316 250 give some random duration;
+#X text 420 426 provide a filename based on date and time;
+#X text 233 390 delete SoundNode after use;
+#X obj 205 365 t b b;
+#X obj 30 370 s \$0-gate;
+#X msg 29 347 1;
+#X obj 186 103 r \$0-gate;
+#X msg 175 82 0;
+#X text 215 72 close the gate after trigger and keep it close while
+recording n seconds;
+#X obj 134 32 inlet;
+#X obj 134 51 t b b;
+#X text 341 54 Inlet 0: bang - triggers recording;
+#X text 303 7 Arguments: \$0 \, channel to record from. The channel
+number is also ID so there should not be more than one recorders on
+the same channel;
+#X obj 77 566 s \$1-to-SPIN-TCP;
+#X obj 195 210 s \$1-to-SPIN-TCP;
+#X obj 132 103 i \$2;
+#X msg 132 472 /recorder\$1 setDirectivityFlag 1 \, /recorder\$1 setParam
+setMediaURI plugin://Recorder \, /recorder\$1 setParam inchannel \$2
+\, /recorder\$1 setParam dur \$3 \, /recorder\$1 setParam filename
+/home/mis/src/Re-Collect/snd/\$4.wav \, /recorder\$1 setParam play
+1;
+#X obj 374 411 sprintf %4d%2d%2d-%02d-%02d-%02d;
+#X connect 0 0 37 0;
+#X connect 1 0 22 0;
+#X connect 2 0 38 0;
+#X connect 3 0 31 0;
+#X connect 3 1 39 0;
+#X connect 4 0 40 0;
+#X connect 4 0 19 0;
+#X connect 5 0 17 0;
+#X connect 6 0 4 2;
+#X connect 6 1 7 0;
+#X connect 6 2 8 0;
+#X connect 7 0 27 0;
+#X connect 8 0 7 1;
+#X connect 9 0 41 0;
+#X connect 9 1 41 1;
+#X connect 9 2 41 2;
+#X connect 10 0 41 3;
+#X connect 10 1 41 4;
+#X connect 10 2 41 5;
+#X connect 11 0 9 0;
+#X connect 11 1 10 0;
+#X connect 12 0 3 0;
+#X connect 13 0 37 0;
+#X connect 14 0 13 0;
+#X connect 15 0 4 3;
+#X connect 17 0 6 0;
+#X connect 17 0 16 0;
+#X connect 18 0 14 0;
+#X connect 19 0 20 0;
+#X connect 21 0 1 0;
+#X connect 22 0 4 0;
+#X connect 22 0 14 1;
+#X connect 22 1 4 1;
+#X connect 22 2 5 0;
+#X connect 22 3 11 0;
+#X connect 22 4 2 0;
+#X connect 27 0 29 0;
+#X connect 27 1 14 0;
+#X connect 29 0 28 0;
+#X connect 30 0 21 1;
+#X connect 31 0 21 1;
+#X connect 33 0 34 0;
+#X connect 34 0 3 0;
+#X connect 34 1 0 0;
+#X connect 39 0 21 0;
+#X connect 40 0 37 0;
+#X connect 41 0 15 0;
