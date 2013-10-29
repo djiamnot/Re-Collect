@@ -73,7 +73,7 @@ black red;
 #X connect 13 0 3 0;
 #X connect 14 0 15 0;
 #X restore 587 86 pd GrannysFiles;
-#X msg 480 558 /gr\$1 setParam mul 7;
+#X msg 480 558 /gr\$1 setParam mul 3;
 #X connect 0 0 28 0;
 #X connect 1 0 20 0;
 #X connect 2 0 4 1;
