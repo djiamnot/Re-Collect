@@ -1,4 +1,4 @@
-#N canvas 3 75 521 450 10;
+#N canvas 172 75 771 571 10;
 #X floatatom 208 365 5 0 0 0 - - -;
 #X msg 198 338 1;
 #X msg 169 338 0;
@@ -15,9 +15,26 @@
 #X obj 122 116 del 75;
 #X obj 123 159 del 75;
 #X obj 123 203 del 75;
+#X msg 302 321 \; LED-1 \$1 \; LED-2 \$1 \; LED-3 \$1 \; LED-4 \$1
+\; LED-5 \$1;
+#X obj 321 253 prepend;
+#X obj 360 147 loadbang;
+#X obj 360 169 i \$1;
+#X obj 360 191 - 6;
+#X obj 320 281 route 0 6 12 18 24;
+#X msg 378 321 \; LED-7 \$1 \; LED-8 \$1 \; LED-9 \$1 \; LED-10 \$1
+\; LED-11 \$1;
+#X msg 461 324 \; LED-13 \$1 \; LED-14 \$1 \; LED-15 \$1 \; LED-16
+\$1 \; LED-17 \$1;
+#X msg 537 324 \; LED-19 \$1 \; LED-20 \$1 \; LED-21 \$1 \; LED-22
+\$1 \; LED-23 \$1;
+#X msg 618 326 \; LED-25 \$1 \; LED-26 \$1 \; LED-27 \$1 \; LED-28
+\$1 \; LED-29 \$1;
 #X connect 0 0 10 0;
 #X connect 1 0 10 0;
+#X connect 1 0 17 0;
 #X connect 2 0 10 0;
+#X connect 2 0 17 0;
 #X connect 3 0 12 0;
 #X connect 3 1 1 0;
 #X connect 4 0 13 0;
@@ -34,3 +51,12 @@
 #X connect 13 0 5 0;
 #X connect 14 0 6 0;
 #X connect 15 0 7 0;
+#X connect 17 0 21 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 17 1;
+#X connect 21 0 16 0;
+#X connect 21 1 22 0;
+#X connect 21 2 23 0;
+#X connect 21 3 24 0;
+#X connect 21 4 25 0;
