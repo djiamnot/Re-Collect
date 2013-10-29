@@ -2,7 +2,7 @@
 #X obj 96 174 line;
 #X obj 96 82 t b b b;
 #X obj 193 104 del 3000;
-#N canvas 440 136 450 300 spinners 0;
+#N canvas 440 133 450 300 spinners 1;
 #X obj 75 17 inlet;
 #X floatatom 236 126 5 0 0 1 (deg/sec) - -;
 #X msg 265 103 0;
@@ -39,7 +39,6 @@
 #X connect 1 0 4 0;
 #X connect 1 1 8 0;
 #X connect 1 2 2 0;
-#X connect 2 0 3 0;
 #X connect 4 0 0 0;
 #X connect 5 0 1 0;
 #X connect 7 0 0 0;

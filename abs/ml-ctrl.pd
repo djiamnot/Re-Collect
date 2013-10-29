@@ -1,6 +1,6 @@
 #N canvas 137 75 884 631 10;
 #X obj 36 -116 inlet;
-#N canvas 109 137 450 300 randombits 0;
+#N canvas 109 131 450 300 randombits 0;
 #X obj 114 35 inlet;
 #X obj 114 57 t f b b b;
 #X obj 114 149 pack f f f f;
@@ -38,10 +38,10 @@
 #X obj 96 226 *;
 #X obj 96 102 t f b;
 #X obj 144 271 prepend set;
-#X msg 144 293 1999.2 1500;
+#X msg 144 293 1333.2 1440;
 #X floatatom 177 57 5 0 0 0 - - -;
 #X obj 264 250 prepend set;
-#X msg 264 272 8 4;
+#X msg 264 272 2 3;
 #X obj -2 341 outlet;
 #X obj 207 342 outlet;
 #X obj 93 9 inlet;
@@ -73,7 +73,7 @@
 #X connect 19 0 10 0;
 #X connect 20 0 6 0;
 #X restore 437 -43 pd microChords;
-#X msg 505 -14 1999.2 1500;
+#X msg 505 -14 1333.2 1440;
 #X floatatom 518 -65 5 0 0 0 - - -;
 #X obj 437 -22 t b a;
 #X obj 437 20 list append;
@@ -96,10 +96,7 @@
 #X obj 464 104 del 2000;
 #X obj 148 -106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 36 -26 /ml\$1 setParam pitch \$2 \, /ml\$1 setParam start \$3
-\, /ml\$1 setParam dur \$4 \, /ml\$1 setParam play 1 \, /ml\$1 setParam
-mul 3;
-#X obj 29 168 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
+#X obj 29 159 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
 #X obj 29 77 thisdir;
 #X msg 29 121 location \$1;
@@ -110,16 +107,20 @@ black red;
 #X obj 29 99 makefilename %s/../snd;
 #X obj -226 237 pack f s;
 #X obj -199 189 random 30;
-#X msg -218 277 /ml\$1 setParam path \$2;
-#X obj -228 307 s \$1-to-SPIN-TCP;
+#X msg -227 281 /ml\$1 setParam path \$2;
+#X obj -226 305 s \$1-to-SPIN-TCP;
+#X obj -146 138 r count_media;
+#X msg 36 -26 /ml\$1 setParam pitch \$2 \, /ml\$1 setParam start \$3
+\, /ml\$1 setParam dur \$4 \, /ml\$1 setParam play 1 \, /ml\$1 setParam
+mul 5;
 #X connect 0 0 19 0;
-#X connect 1 0 31 0;
-#X connect 1 0 39 0;
+#X connect 1 0 43 0;
 #X connect 3 0 6 0;
 #X connect 4 0 28 1;
 #X connect 5 0 28 0;
 #X connect 7 0 1 0;
 #X connect 7 0 28 0;
+#X connect 7 0 38 0;
 #X connect 8 0 11 0;
 #X connect 8 1 9 0;
 #X connect 10 0 8 1;
@@ -131,9 +132,9 @@ black red;
 #X connect 17 0 12 0;
 #X connect 19 0 7 0;
 #X connect 19 1 8 0;
-#X connect 19 1 40 0;
+#X connect 19 1 39 0;
 #X connect 19 2 29 0;
-#X connect 19 2 37 0;
+#X connect 19 2 36 0;
 #X connect 20 0 21 0;
 #X connect 20 1 27 0;
 #X connect 21 0 22 0;
@@ -146,14 +147,15 @@ black red;
 #X connect 28 0 3 0;
 #X connect 29 0 20 0;
 #X connect 30 0 19 0;
-#X connect 31 0 2 0;
-#X connect 32 0 39 1;
-#X connect 33 0 38 0;
-#X connect 34 0 32 0;
-#X connect 35 0 32 0;
-#X connect 36 0 35 0;
+#X connect 31 0 38 1;
+#X connect 32 0 37 0;
+#X connect 33 0 31 0;
+#X connect 34 0 31 0;
+#X connect 35 0 34 0;
+#X connect 36 0 32 0;
 #X connect 37 0 33 0;
-#X connect 38 0 34 0;
-#X connect 39 0 41 0;
-#X connect 40 0 35 0;
-#X connect 41 0 42 0;
+#X connect 38 0 40 0;
+#X connect 39 0 34 0;
+#X connect 40 0 41 0;
+#X connect 42 0 39 1;
+#X connect 43 0 2 0;
