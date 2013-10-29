@@ -1,4 +1,4 @@
-#N canvas 189 100 832 531 10;
+#N canvas 189 97 832 531 10;
 #X obj 46 -106 inlet;
 #N canvas 571 105 450 300 randombits 0;
 #X obj 114 35 inlet;
@@ -39,7 +39,7 @@ black red;
 #X obj 278 39 random 30;
 #X obj 46 -84 t b b b b;
 #X obj 412 -36 r count_media;
-#X msg 45 -16 /snd\$1 setParam speed \$2 \, /snd\$1 setParam mul 5
+#X msg 45 -16 /snd\$1 setParam speed \$2 \, /snd\$1 setParam mul 3
 \, /snd\$1 setParam play 1;
 #X connect 0 0 16 0;
 #X connect 1 0 18 0;
