@@ -1,24 +1,24 @@
-#N canvas 189 85 832 531 10;
+#N canvas 189 75 832 531 10;
 #X obj 46 -106 inlet;
-#N canvas 571 105 450 300 randombits 0;
+#N canvas 571 102 450 300 randombits 0;
 #X obj 114 35 inlet;
 #X obj 114 57 t f b b b;
 #X obj 114 149 pack f f f f;
 #X obj 114 171 outlet;
 #X text 297 118 pitch;
-#X obj 131 120 expr random(1 \, 150) * 0.01;
 #X obj 147 99 expr random(10 \, 30)*0.1;
 #X text 308 74 volume;
 #X obj 165 79 expr random(30 \, 50)*0.1;
+#X obj 131 120 expr random(1 \, 120) * 0.01;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
-#X connect 1 1 5 0;
-#X connect 1 2 6 0;
-#X connect 1 3 8 0;
+#X connect 1 1 8 0;
+#X connect 1 2 5 0;
+#X connect 1 3 7 0;
 #X connect 2 0 3 0;
-#X connect 5 0 2 1;
-#X connect 6 0 2 2;
-#X connect 8 0 2 3;
+#X connect 5 0 2 2;
+#X connect 7 0 2 3;
+#X connect 8 0 2 1;
 #X restore 46 -38 pd randombits;
 #X obj 46 19 s \$1-to-SPIN-TCP;
 #X obj 46 -60 f \$2;
@@ -34,12 +34,12 @@ black red;
 #X obj 508 -99 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 506 -51 makefilename %s/../snd;
-#X msg 259 127 /snd\$1 setParam path \$2;
+#X msg 261 132 /snd\$1 setParam path \$2;
 #X obj 251 87 pack f s;
 #X obj 278 39 random 30;
 #X obj 46 -84 t b b b b;
 #X obj 412 -36 r count_media;
-#X msg 45 -16 /snd\$1 setParam speed \$2 \, /snd\$1 setParam mul 2
+#X msg 45 -16 /snd\$1 setParam speed \$2 \, /snd\$1 setParam mul 3
 \, /snd\$1 setParam play 1;
 #X connect 0 0 16 0;
 #X connect 1 0 18 0;
