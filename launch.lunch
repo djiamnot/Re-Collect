@@ -4,5 +4,6 @@
 #add_command("hdspmixer", identifier="hdspmixer")
 add_command("/usr/bin/jackd -dalsa -dhw:1 -r48000 -p1024 -n2", identifier="jackd", sleep_after=1)
 add_command("spinserver --spatosc BasicTranslator osc.udp://localhost:18033 --scene-id ReCollect", identifier="spinserver")
-add_command("pyospat -p 18033 -L OCTO", identifier="pyospat", depends="jackd")
-add_command("pd-extended -jack /home/mis/src/Re-Collect/spatViaSpin.pd", identifier="pd", depends="jackd")
+add_command("pyospat -p 18033 -L FIVE", identifier="pyospat", depends="jackd")
+add_command("pd-extended -jack /home/mis/src/Re-Collect/spatViaSpin.pd", identifier="pd", depends="jackd", sleep_after=2)
+add_command("/home/mis/src/Re-Collect/scripts/jack_setup.sh", identifier="jack_setup", depends="pd", respawn=False)
