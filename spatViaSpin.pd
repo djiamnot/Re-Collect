@@ -1,4 +1,4 @@
-#N canvas 603 96 1038 703 10;
+#N canvas 603 94 1038 703 10;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
@@ -278,7 +278,7 @@ freq \$4;
 #X connect 31 0 30 0;
 #X restore 808 -109 pd pulsar controls;
 #X obj 478 49 nbx 5 14 -1e+37 1e+37 0 0 empty count_media num_of_soundfiles
-0 -8 0 10 -4034 -1 -1 0 256;
+0 -8 0 10 -4034 -1 -1 24 256;
 #X obj 6 -114 s __init;
 #X obj 809 -218 declare -path abs;
 #X obj 809 -199 declare -path rj;
@@ -587,7 +587,7 @@ plugin://ResoSine \, /blit\$1 setParam stop 1;
 -1 -1;
 #X obj 26 17 bng 15 250 50 0 empty init_Grannys empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 12 75 1009 665 Grannys 0;
+#N canvas 12 77 1009 665 Grannys 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -656,13 +656,13 @@ plugin://Granny \, /gr\$1 setParam path \$2 \, /gr\$1 setParam stop
 #X obj 327 159 random 14;
 #X obj 382 120 r count_media;
 #X obj 460 556 s \$0-to-SPIN-TCP;
-#X msg 460 507 createNode constrained\$1 ConstraintsNode \, /constrained\$1
-setTarget box \, /constrained\$1 setConstraintMode 3 \, /constrained\$1
-setComputationMode 1 \,;
 #X msg 175 92 6;
 #X obj 112 135 counter 6 10;
 #X msg 162 369 /gr\$1 setParent constrained\$2 \, /gr\$1 setTranslation
 0 0 0;
+#X msg 460 507 createNode constrained\$1 ConstraintsNode \, /constrained\$1
+setTarget box \, /constrained\$1 setConstraintMode 3 \, /constrained\$1
+setComputationMode 1 \,;
 #X connect 0 0 7 0;
 #X connect 1 0 12 0;
 #X connect 1 0 10 1;
@@ -670,23 +670,23 @@ setComputationMode 1 \,;
 #X connect 3 0 5 0;
 #X connect 4 0 2 0;
 #X connect 5 0 1 0;
-#X connect 6 0 62 0;
+#X connect 6 0 61 0;
 #X connect 9 0 10 0;
 #X connect 9 0 17 0;
 #X connect 9 1 24 0;
-#X connect 9 1 60 0;
+#X connect 9 1 63 0;
 #X connect 10 0 25 0;
 #X connect 13 0 1 0;
 #X connect 14 0 15 0;
 #X connect 15 0 55 0;
 #X connect 15 1 0 0;
 #X connect 15 2 4 0;
-#X connect 15 2 61 0;
+#X connect 15 2 60 0;
 #X connect 17 0 22 0;
 #X connect 17 1 51 0;
 #X connect 20 0 15 0;
-#X connect 21 0 62 0;
-#X connect 22 0 63 0;
+#X connect 21 0 61 0;
+#X connect 22 0 62 0;
 #X connect 23 0 9 0;
 #X connect 23 1 57 0;
 #X connect 24 0 8 0;
@@ -725,15 +725,15 @@ setComputationMode 1 \,;
 #X connect 56 0 54 0;
 #X connect 57 0 13 0;
 #X connect 58 0 57 1;
-#X connect 60 0 59 0;
-#X connect 61 0 62 2;
-#X connect 62 0 23 0;
-#X connect 62 2 19 0;
-#X connect 63 0 18 0;
+#X connect 60 0 61 2;
+#X connect 61 0 23 0;
+#X connect 61 2 19 0;
+#X connect 62 0 18 0;
+#X connect 63 0 59 0;
 #X restore 44 16 pd Grannys;
 #X obj 26 -22 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 867 282 1009 665 audio_ctl+spin 0;
+#N canvas 867 280 1009 665 audio_ctl+spin 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -818,7 +818,7 @@ setComputationMode 1 \,;
 #X obj 26 -63 r __init;
 #X obj 6 64 cnv 15 160 100 empty empty SoundNodes_controllers 20 12
 0 10 -233017 -66577 0;
-#N canvas 218 137 777 585 recorders 0;
+#N canvas 218 136 777 585 recorders 0;
 #X obj 41 24 r Trigger1;
 #X obj 138 24 r Trigger2;
 #X obj 234 23 r Trigger3;
@@ -926,7 +926,7 @@ setComputationMode 1 \,;
 #X connect 43 0 44 0;
 #X connect 44 0 41 0;
 #X restore 18 95 pd recorders;
-#N canvas 24 297 738 487 instrument_controls 0;
+#N canvas 1127 553 738 487 instrument_controls 1;
 #X obj 9 -32 r gr_ctrl;
 #X obj 9 -10 sel 0 1 2 3 4;
 #X obj 173 -12 sel 0 1 2 3 4;
@@ -946,7 +946,7 @@ setComputationMode 1 \,;
 #X obj 306 245 t b b;
 #X obj 351 287 expr random(1 \, 11)*0.1;
 #X obj 410 346 prepend set;
-#X msg 410 368 /snd29 setParam play 1;
+#X msg 410 368 /snd27 setParam play 1;
 #X msg 306 326 /snd\$1 setParam speed \$2 \, /snd\$1 setParam play
 1;
 #X obj 96 171 expr random(0 \, 5);
@@ -1017,7 +1017,7 @@ setComputationMode 1 \,;
 #X connect 22 0 21 0;
 #X connect 23 0 12 0;
 #X restore 19 133 pd instrument_controls;
-#N canvas 69 75 809 577 MicroLoops_controls 0;
+#N canvas 69 77 809 577 MicroLoops_controls 0;
 #N canvas 109 137 450 300 randombits 0;
 #X obj 114 35 inlet;
 #X obj 114 57 t f b b b;
@@ -1042,7 +1042,7 @@ setComputationMode 1 \,;
 #X floatatom 317 -142 5 0 0 0 - - -;
 #X obj 259 14 s \$0-to-SPIN-TCP;
 #X obj 319 -99 prepend set;
-#X msg 319 -77 4 1.41 4.7 31.5;
+#X msg 319 -77 0 0.3 6.8 47.1;
 #X msg 132 -72 /ml\$1 setParam stop 1;
 #X floatatom 129 -93 5 0 0 0 - - -;
 #X text 311 -161 0 - 5;
@@ -1056,10 +1056,10 @@ setComputationMode 1 \,;
 #X obj 96 226 *;
 #X obj 96 102 t f b;
 #X obj 144 271 prepend set;
-#X msg 144 293 360 333.2;
+#X msg 144 293 213.2 213.2;
 #X floatatom 177 57 5 0 0 0 - - -;
 #X obj 264 250 prepend set;
-#X msg 264 272 9 8;
+#X msg 264 272 1 1;
 #X obj -2 341 outlet;
 #X obj 207 342 outlet;
 #X obj 93 9 inlet;
@@ -1093,13 +1093,13 @@ setComputationMode 1 \,;
 #X restore 488 -153 pd microChords;
 #X obj 487 -172 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 565 -124 360 333.2;
+#X msg 565 -124 213.2 213.2;
 #X floatatom 560 -178 5 0 0 0 - - -;
 #X obj 495 -106 f;
 #X obj 497 -132 t b a;
 #X obj 496 -81 list append;
 #X obj 412 48 prepend set;
-#X msg 410 73 /ml4 event freq 360 333.2;
+#X msg 410 73 /ml0 event freq 213.2 213.2;
 #X obj 317 -170 random 5;
 #X obj 503 -237 r tick;
 #X obj 503 -215 % 27;
@@ -1195,7 +1195,7 @@ mul 5;
 #X connect 35 0 32 0;
 #X connect 37 0 2 0;
 #X restore 18 114 pd MicroLoops_controls;
-#N canvas 571 107 450 300 base_conf 0;
+#N canvas 571 105 450 300 base_conf 0;
 #X obj 34 207 shell;
 #X obj 34 148 bng 15 250 50 0 empty __init init_media_count 17 7 0
 10 -262144 -1 -1;
@@ -1383,9 +1383,9 @@ constrained\$1 \, /force\$1 setAngularDecay 0 \, /force\$1 setDistanceDecay
 #X connect 29 0 23 0;
 #X connect 30 0 24 0;
 #X restore 684 26 pd audio_monitors;
-#N canvas 956 639 714 324 physics 1;
+#N canvas 956 636 714 324 physics 1;
 #X obj 264 104 until;
-#N canvas 571 159 450 300 velocities 0;
+#N canvas 571 158 450 300 velocities 0;
 #X obj 124 53 inlet;
 #X obj 124 75 t a b b b;
 #X obj 140 99 random 10;
@@ -1425,7 +1425,6 @@ constrained\$1 \, /force\$1 setAngularDecay 0 \, /force\$1 setDistanceDecay
 #X connect 14 0 9 1;
 #X restore 264 148 pd velocities;
 #X msg 123 147 /ml* setParam play 1;
-#X obj 262 55 t tick;
 #X obj 302 56 r ml_ctrl;
 #X msg 133 166 /gr* setParam play 1;
 #X msg 430 33 0 0 0 0;
@@ -1444,57 +1443,64 @@ setParam mul 5;
 #X obj 264 126 counter 0 15;
 #X msg 264 168 /constrained\$1 setVelocity \$2 \$3 0;
 #X obj 264 188 s \$0-to-SPIN-TCP;
-#X msg 293 250 /constrained* translateTo -6 0 0 3 LinearMotion;
-#X connect 0 0 17 0;
-#X connect 1 0 18 0;
-#X connect 2 0 19 0;
-#X connect 3 0 16 0;
-#X connect 4 0 16 0;
-#X connect 5 0 19 0;
-#X connect 6 0 13 0;
-#X connect 7 0 13 0;
-#X connect 8 0 13 0;
-#X connect 9 0 13 0;
-#X connect 10 0 13 0;
-#X connect 11 0 19 0;
-#X connect 12 0 19 0;
-#X connect 13 0 19 0;
-#X connect 14 0 13 0;
-#X connect 15 0 19 0;
-#X connect 16 0 0 0;
-#X connect 17 0 1 0;
-#X connect 18 0 19 0;
-#X connect 20 0 19 0;
+#X obj 263 9 r tick;
+#X obj 263 31 % 20;
+#X obj 263 53 sel 0;
+#X msg 293 249 /constrained* translateTo -10 -10 0 3 LinearMotion;
+#X msg 297 268 /constrained* translateTo 15 0 0 3 LinearMotion;
+#X connect 0 0 16 0;
+#X connect 1 0 17 0;
+#X connect 2 0 18 0;
+#X connect 3 0 15 0;
+#X connect 4 0 18 0;
+#X connect 5 0 12 0;
+#X connect 6 0 12 0;
+#X connect 7 0 12 0;
+#X connect 8 0 12 0;
+#X connect 9 0 12 0;
+#X connect 10 0 18 0;
+#X connect 11 0 18 0;
+#X connect 12 0 18 0;
+#X connect 13 0 12 0;
+#X connect 14 0 18 0;
+#X connect 15 0 0 0;
+#X connect 16 0 1 0;
+#X connect 17 0 18 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 21 0 15 0;
+#X connect 22 0 18 0;
+#X connect 23 0 18 0;
 #X restore 683 47 pd physics;
 #X obj 6 168 cnv 15 160 150 empty empty Visualization 20 12 0 10 -233017
 -66577 0;
-#N canvas 3 98 753 341 speakers 0;
-#X msg 21 52 createNode speaker1 ShapeNode \, /speaker1 setTranslation
-0 3.91 0;
-#X msg 31 93 createNode speaker2 ShapeNode \, /speaker2 setTranslation
-3 1.48 0;
-#X msg 38 135 createNode speaker3 ShapeNode \, /speaker3 setTranslation
-1.69 -2.49 0;
-#X msg 48 175 createNode speaker4 ShapeNode \, /speaker4 setTranslation
--1.69 -2.49 0;
-#X msg 58 215 createNode speaker5 ShapeNode \, /speaker5 setTranslation
--3 1.48 0;
+#N canvas 3 95 753 341 speakers 1;
 #X obj 48 16 inlet;
 #X obj 19 251 s \$0-to-SPIN;
+#X msg 21 52 createNode speaker1 ShapeNode \, /speaker1 setTranslation
+0 3.91 0 \, /speaker1 setColor 0.3 0.3 0.3 1;
+#X msg 31 93 createNode speaker2 ShapeNode \, /speaker2 setTranslation
+3 1.48 0 \, /speaker2 setColor 0.3 0.3 0.3 1;
+#X msg 38 135 createNode speaker3 ShapeNode \, /speaker3 setTranslation
+1.69 -2.49 0 \, /speaker3 setColor 0.3 0.3 0.3 1;
+#X msg 48 175 createNode speaker4 ShapeNode \, /speaker4 setTranslation
+-1.69 -2.49 0 \, /speaker4 setColor 0.3 0.3 0.3 1;
+#X msg 57 215 createNode speaker5 ShapeNode \, /speaker5 setTranslation
+-3 1.48 0 \, /speaker5 setColor 0.3 0.3 0.3 1;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X connect 0 0 4 0;
+#X connect 0 0 5 0;
 #X connect 0 0 6 0;
-#X connect 1 0 6 0;
-#X connect 2 0 6 0;
-#X connect 3 0 6 0;
-#X connect 4 0 6 0;
-#X connect 5 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
 #X connect 5 0 1 0;
-#X connect 5 0 2 0;
-#X connect 5 0 3 0;
-#X connect 5 0 4 0;
+#X connect 6 0 1 0;
 #X restore 30 197 pd speakers;
 #X obj 14 197 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#N canvas 1179 472 738 585 LEDs 0;
+#N canvas 1179 471 738 585 LEDs 0;
 #X obj 193 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 209 81 cluster3D \$0 0;
@@ -1580,6 +1586,8 @@ setParam mul 5;
 #X obj 574 394 LEDfromReporter \$0 23;
 #X obj 702 293 LEDfromReporter \$0 24;
 #X obj 704 312 LEDfromReporter \$0 25;
+#X obj 105 -132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X connect 4 0 5 0;
 #X connect 5 0 0 0;
 #X connect 7 0 6 0;
@@ -1625,3 +1633,4 @@ setParam mul 5;
 #X connect 68 0 47 0;
 #X connect 73 0 72 0;
 #X connect 75 0 74 0;
+#X connect 102 0 14 0;
