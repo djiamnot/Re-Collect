@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pyoscape_prefs>
+    <sr>44100</sr>
+    <nchnls>5</nchnls>
+    <audio>jack</audio>
+    <buffersize>1024</buffersize>
+    <duplex>1</duplex>
+    <jackname>pyo</jackname>
+</pyoscape_prefs>
