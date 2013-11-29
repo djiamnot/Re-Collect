@@ -1,4 +1,4 @@
-#N canvas 542 85 450 300 10;
+#N canvas 542 81 450 300 10;
 #X obj 226 59 sel 1;
 #X obj 226 81 t b b b;
 #X msg 263 122 0;
@@ -10,7 +10,7 @@
 #X obj 210 224 outlet;
 #X obj 339 34 inlet;
 #X obj 194 114 del 8000;
-#X obj 67 172 s Trigger\$1;
+#X obj 42 224 s Trigger\$1;
 #X text 96 255 switch off activity for some time (default: 8sec);
 #X connect 0 0 1 0;
 #X connect 1 0 9 0;
