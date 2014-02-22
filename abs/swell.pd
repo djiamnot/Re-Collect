@@ -19,7 +19,7 @@
 \$1 \; LED-23 \$1;
 #X msg 628 276 \; LED-25 \$1 \; LED-26 \$1 \; LED-27 \$1 \; LED-28
 \$1 \; LED-29 \$1;
-#X obj 194 331 s LED-\$1;
+#X obj 182 437 s LED-\$1;
 #X obj 190 125 pack 0 1 0;
 #X obj 215 234 pack 1 0 0;
 #X obj 190 54 t b b;
@@ -32,6 +32,7 @@
 #X obj 370 119 i \$1;
 #X floatatom 137 301 5 0 0 0 - - -;
 #X floatatom 324 168 5 0 0 0 - - -;
+#X obj 213 351 pipe 1000;
 #X connect 1 0 4 0;
 #X connect 2 0 23 0;
 #X connect 3 0 1 1;
@@ -41,7 +42,7 @@
 #X connect 4 3 12 0;
 #X connect 4 4 13 0;
 #X connect 5 0 1 0;
-#X connect 5 0 14 0;
+#X connect 5 0 26 0;
 #X connect 6 0 23 0;
 #X connect 7 0 5 0;
 #X connect 7 1 8 0;
@@ -52,6 +53,7 @@
 #X connect 17 0 15 0;
 #X connect 17 1 18 0;
 #X connect 18 0 19 0;
+#X connect 18 0 26 1;
 #X connect 19 0 15 2;
 #X connect 19 0 16 2;
 #X connect 19 0 8 1;
@@ -61,3 +63,4 @@
 #X connect 23 0 3 0;
 #X connect 24 0 14 0;
 #X connect 25 0 1 0;
+#X connect 26 0 14 0;
