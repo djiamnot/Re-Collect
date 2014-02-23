@@ -1682,7 +1682,7 @@ setParam mul 5;
 #X restore 30 197 pd speakers;
 #X obj 14 197 bng 15 250 50 0 empty __init empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 67 152 738 585 LEDs 0;
+#N canvas 67 149 738 585 LEDs 0;
 #X obj 193 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 191 101 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -1746,9 +1746,8 @@ setParam mul 5;
 #X restore 31 219 pd LEDs;
 #X obj 13 219 bng 15 250 50 0 empty __init empty 17 7 0 10 -262144
 -1 -1;
-#X obj 570 167 LEDfromReporter \$0 0;
-#X obj 105 -132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 105 -132 bng 15 250 50 0 empty empty INIT 17 7 0 10 -260097
+-258113 -258113;
 #X obj 170 172 cnv 15 160 150 empty empty Manual_ctrl 20 12 0 10 -233017
 -66577 0;
 #X obj 183 196 bng 15 250 50 0 manual_trig empty trigger_random 17
@@ -1787,28 +1786,7 @@ setParam mul 5;
 #X connect 13 0 4 0;
 #X connect 14 0 5 0;
 #X restore 181 222 pd swells;
-#X obj 570 186 LEDfromReporter \$0 1;
-#X obj 570 207 LEDfromReporter \$0 2;
-#X obj 569 227 LEDfromReporter \$0 3;
-#X obj 570 247 LEDfromReporter \$0 4;
-#X obj 570 268 LEDfromReporter \$0 5;
-#X obj 700 186 LEDfromReporter \$0 7;
-#X obj 700 207 LEDfromReporter \$0 8;
-#X obj 699 227 LEDfromReporter \$0 9;
-#X obj 700 247 LEDfromReporter \$0 10;
-#X obj 701 268 LEDfromReporter \$0 11;
-#X obj 830 186 LEDfromReporter \$0 13;
-#X obj 830 207 LEDfromReporter \$0 14;
-#X obj 829 227 LEDfromReporter \$0 15;
-#X obj 830 247 LEDfromReporter \$0 16;
-#X obj 830 268 LEDfromReporter \$0 17;
-#X obj 574 312 LEDfromReporter \$0 19;
-#X obj 574 333 LEDfromReporter \$0 20;
-#X obj 572 354 LEDfromReporter \$0 21;
-#X obj 574 373 LEDfromReporter \$0 22;
-#X obj 574 394 LEDfromReporter \$0 23;
-#X obj 704 312 LEDfromReporter \$0 25;
-#X msg 416 230 \; init_MicroLoops bang;
+#X msg 463 102 \; init_MicroLoops bang;
 #X obj 431 132 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 465 75 tgl 15 1 dronesON dronesON-set dronesON 17 7 0 10 -204786
@@ -1940,6 +1918,31 @@ plugin://Buzz;
 #X restore 44 8 pd buzz;
 #X obj 26 8 bng 15 250 50 0 empty __init empty 17 7 0 10 -262144 -1
 -1;
+#N canvas 571 202 450 300 reporters 0;
+#X obj -170 16 LEDfromReporter \$0 0;
+#X obj -170 35 LEDfromReporter \$0 1;
+#X obj -170 56 LEDfromReporter \$0 2;
+#X obj -171 76 LEDfromReporter \$0 3;
+#X obj -170 96 LEDfromReporter \$0 4;
+#X obj -170 117 LEDfromReporter \$0 5;
+#X obj -40 35 LEDfromReporter \$0 7;
+#X obj -40 56 LEDfromReporter \$0 8;
+#X obj -41 76 LEDfromReporter \$0 9;
+#X obj -40 96 LEDfromReporter \$0 10;
+#X obj -39 117 LEDfromReporter \$0 11;
+#X obj 90 35 LEDfromReporter \$0 13;
+#X obj 90 56 LEDfromReporter \$0 14;
+#X obj 89 76 LEDfromReporter \$0 15;
+#X obj 90 96 LEDfromReporter \$0 16;
+#X obj 90 117 LEDfromReporter \$0 17;
+#X obj -166 161 LEDfromReporter \$0 19;
+#X obj -166 182 LEDfromReporter \$0 20;
+#X obj -168 203 LEDfromReporter \$0 21;
+#X obj -166 222 LEDfromReporter \$0 22;
+#X obj -166 243 LEDfromReporter \$0 23;
+#X obj -36 161 LEDfromReporter \$0 25;
+#X restore 683 72 pd reporters;
+#X msg 461 136 \; init_Grannys bang;
 #X connect 4 0 5 0;
 #X connect 5 0 0 0;
 #X connect 7 0 6 0;
@@ -1985,7 +1988,7 @@ plugin://Buzz;
 #X connect 68 0 47 0;
 #X connect 73 0 72 0;
 #X connect 75 0 74 0;
-#X connect 77 0 14 0;
-#X connect 104 0 45 0;
-#X connect 104 0 41 0;
-#X connect 107 0 106 0;
+#X connect 76 0 14 0;
+#X connect 82 0 45 0;
+#X connect 82 0 41 0;
+#X connect 85 0 84 0;
