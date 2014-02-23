@@ -398,11 +398,11 @@ plugin://ResoSine \, /blit\$1 setParam stop 1;
 #X obj 1100 237 t f b;
 #X obj 1100 383 list-group 4;
 #X obj 1148 406 prepend set;
-#X msg 1148 428 234.52 220 352 366.52;
+#X msg 1148 428 293.26 264 366.52 234.52;
 #X floatatom 1146 191 5 0 0 0 - - -;
 #X obj 1220 362 list-group 4;
 #X obj 1268 385 prepend set;
-#X msg 1268 407 1 0 7 8;
+#X msg 1268 407 5 3 8 1;
 #X obj 1100 215 f 220;
 #X obj 1230 628 s \$0-to-SPIN;
 #X obj 172 328 s \$0-to-SPIN-TCP;
@@ -468,10 +468,10 @@ plugin://ResoSine \, /blit\$1 setParam stop 1;
 #X msg 139 426 /blit\$1 setParent blitOrbit\$1 \, /blit\$1 setTranslation
 0 4 6 \, /blitOrbit\$1 setOrientation 0 0 \$2;
 #X obj 1441 590 prepend set;
-#X msg 1441 612 0 0.49 0.69 0.51 9.8;
+#X msg 1441 612 0 0.91 0.65 0.3 5.6;
 #X obj 1300 478 expr random(30 \, 100)*0.1;
 #X obj 708 413 prepend set;
-#X msg 708 435 0 3 8;
+#X msg 708 435 0 20 10;
 #X obj 897 317 random 10;
 #X obj 827 314 random 20;
 #X msg 797 412 /blit\$1 setParam dur 0.233 \, /blit\$1 setParam mul
@@ -838,15 +838,15 @@ setComputationMode 1 \,;
 #X obj 331 159 abs/MicRec \$0 3;
 #X obj 429 158 abs/MicRec \$0 4;
 #X obj 61 68 prepend set;
-#X msg 61 90 6;
+#X msg 61 90 8;
 #X obj 150 70 prepend set;
-#X msg 150 92 1;
+#X msg 150 92 3;
 #X obj 249 71 prepend set;
 #X msg 249 93 8;
 #X obj 341 69 prepend set;
-#X msg 341 91 4;
+#X msg 341 91 5;
 #X obj 437 71 prepend set;
-#X msg 437 93 0;
+#X msg 437 93 2;
 #X obj 58 45 counter 10;
 #X obj 147 47 counter 10;
 #X obj 246 48 counter 10;
@@ -949,7 +949,7 @@ setComputationMode 1 \,;
 #X obj 306 245 t b b;
 #X obj 351 287 expr random(1 \, 11)*0.1;
 #X obj 410 346 prepend set;
-#X msg 410 368 /snd28 setParam play 1;
+#X msg 410 368 /snd25 setParam play 1;
 #X msg 306 326 /snd\$1 setParam speed \$2 \, /snd\$1 setParam play
 1;
 #X obj 96 171 expr random(0 \, 5);
@@ -1380,8 +1380,8 @@ mul 0.3;
 #X symbolatom 489 -223 10 0 0 0 - - -;
 #X obj 170 -91 cnv 15 280 255 empty empty Show_control 20 12 0 10 -233017
 -66577 0;
-#X obj 242 -59 tgl 15 0 empty __init empty 17 7 0 10 -262144 -1 -1
-0 1;
+#X obj 242 -59 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
 #X obj 243 3 s tick;
 #X obj 243 -41 metro 1000;
 #X obj 243 -19 f;
