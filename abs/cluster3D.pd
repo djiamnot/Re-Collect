@@ -1,4 +1,4 @@
-#N canvas 373 264 800 384 10;
+#N canvas 221 261 800 384 10;
 #X obj 49 22 inlet;
 #X obj 49 129 f;
 #X obj 75 129 + 1;
@@ -16,7 +16,7 @@
 \, /node\$1 setParent nodeRoot\$3 \, /led\$1 setParent node\$1 \, /led\$1
 setShape 1 \, /led\$1 setTranslation 0 1 0 \, /node\$1 setOrientation
 0 0 \$2 \, /led\$1 setScale 0.3 0.3 0.3;
-#N canvas 782 602 937 339 reporters 0;
+#N canvas 84 401 937 339 reporters 1;
 #X obj 120 34 t f f;
 #X obj 120 12 inlet;
 #X msg 120 131 15;
@@ -39,7 +39,6 @@ node\$1 \, /reporter\$1 setReporting DISTANCE 1;
 #X connect 5 0 2 0;
 #X connect 5 1 7 0;
 #X connect 5 2 6 1;
-#X connect 6 0 9 0;
 #X connect 7 0 4 2;
 #X connect 9 0 11 0;
 #X connect 10 0 8 0;
