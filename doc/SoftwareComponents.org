@@ -15,25 +15,25 @@
 #+OPTIONS: author:nil
 #+OPTIONS: timestamp:nil date:nil
 #+LANGUAGE: english
-#+TITLE: Re-Collect software
+#+TITLE: Re-Collect software architecture
 #+DATE: <2013-11-26 Tue>
 
 
-* Re-Collect software architecture
-Re-Collect uses a variety of software and hardware componenents in order to fill the space with sound and light following user interaction. On a high level, when a motion sensor is activated, its signal is read by the program and fires a number of events. First, the "node"[fn:1], under which the presence was detected, lights up and plays a short sound in order to acknowledge the visitor. It then chooses a previously recorded soundfile and activates the playback. There are several ways in which the sound is manipulated during playback. It could be slowed down, sped up, granulated (cut up in very short chunks, in the range of tens to a couple hundred miliseconds which are then played as "clouds" of sound), cut up in short chunks of 1 second or less which are played back looping at variable speeds. The piece has 4 different states and different sound manipulations are associated with the different states.
+* Overview of the software functions
+Re-Collect uses a variety of software and hardware components in order to fill the space with sound and light following user interaction. On a high level, when a motion sensor is activated, its signal is read by the program and fires a number of events. First, the "node"[fn:1], under which the presence was detected, lights up and plays a short sound in order to acknowledge the visitor. It then chooses a previously recorded sound file and activates the playback. There are several ways in which the sound is manipulated during playback. It could be slowed down, sped up, granulated (cut up in very short chunks, in the range of tens to a couple hundred milliseconds which are then played as "clouds" of sound), cut up in short chunks of 1 second or less which are played back looping at variable speeds. The piece has 4 different states and different sound manipulations are associated with the different states.
 
 ** Software components
 
-Re-Collect glues together different types of software in order to do its work. There are 3 major software groups that interoperate together.
+Re-Collect glues together different types of software in order to do its work. There are 3 major software groups that inter-operate together.
 
 - Pure Data, a visual programming environment for multimedia - http://puredata.info/
 - SpinFramework, rapid prototyping for spacial interaction and visualization of networked virtual environments - http://www.spinframework.org/
 - Pyo, Python signal processing modules, https://code.google.com/p/pyo/
 - Pyospat, an audio engine that wraps Pyo and understands Spin messages - https://github.com/sat-metalab/pyospat
 
-In short, Pure data is used as show control software that glues many pieces together. It reads the state of motion sensors (provided by an Arduino) and dispatches the information to various algorythms that deal with with light and sound control. The lighting control is not very complex, different presets are chosen based on some conditions and data is sent to appropriate lighting channels. Pure data patch also takes care of all the logic regarding sound playback. Depending and the different states and other conditions it chooses which sound file will be played using which algorithm. However, Pure data does not communicate directly with the sound engine, it send the information to Spin which in turn forwards the commands to Pyospat.
+In short, Pure data is used as show control software that glues many pieces together. It reads the state of motion sensors (provided by an Arduino) and dispatches the information to various algorithms that deal with light and sound control. The lighting control is not very complex, different presets are chosen based on some conditions and data is sent to appropriate lighting channels. Pure data patch also takes care of all the logic regarding sound playback. Depending and the different states and other conditions it chooses which sound file will be played using which algorithm. However, Pure data does not communicate directly with the sound engine, it send the information to Spin which in turn forwards the commands to Pyospat.
 
-Spin is being used as a spatialization and physical modelling engine. We make use of 2 functionnalities, it creates a virtual environment that simulates certain laws of physics that are applied to the movement of the sounds. Spin also contains a model of the installation with 3D coordinates of the location of the speakers and once the sounds are set in motion, the volumes are calculated based on the sound distance from the speaker and thus the visitor can perceive sounds moving through the space. This is done thanks to the fact that Pyospat, the audio engine used in this piece, understands Spin's 3D world and takes care of all audio rendering according to various types of information it obtains from Spin. 
+Spin is being used as a spatialization and physical modelling engine. We make use of 2 functionalities, it creates a virtual environment that simulates certain laws of physics that are applied to the movement of the sounds. Spin also contains a model of the installation with 3D coordinates of the location of the speakers and once the sounds are set in motion, the volumes are calculated based on the sound distance from the speaker and thus the visitor can perceive sounds moving through the space. This is done thanks to the fact that Pyospat, the audio engine used in this piece, understands Spin's 3D world and takes care of all audio rendering according to various types of information it obtains from Spin. 
 
 The schematic below illustrates this high-level architecture.
 
