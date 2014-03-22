@@ -1,4 +1,5 @@
 #!/usr/bin/env lunch
+# -*- python -*-
 
 #add_command("hdspmixer", identifier="hdspmixer")
 #add_command("jakd -R -dalsa -dhw0:0", identifier="jackd")
