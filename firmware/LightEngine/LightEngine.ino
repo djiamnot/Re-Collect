@@ -47,12 +47,16 @@
 
 #include "Tlc5940.h"
 
+#define readyPin 2
+
 char buf[30];
 
 void setup()
 {
   Tlc.init();
-
+  pinMode(readyPin, OUTPUT);
+  digitalWrite(readyPin, 1);
+  
   Serial.begin(57600);
   Serial.println("Hello LightEngine");
 
@@ -67,6 +71,7 @@ void loop()
 {
   if (Serial.available() > 0) {
     if (Serial.read() == 0xff) {
+      digitalWrite(readyPin, 0);
       uint8_t numbytes = Serial.readBytes(buf, 30);
       // Serial.print("Received ");
       // Serial.print(numbytes);
@@ -79,6 +84,7 @@ void loop()
       }
       //      Serial.println();
       Tlc.update();
+      digitalWrite(readyPin, 1);
     }
   }
 }
