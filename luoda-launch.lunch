@@ -7,4 +7,4 @@ add_command("spinserver --spatosc BasicTranslator osc.udp://localhost:18033 --sc
 add_command("spinviewer --scene-id ReCollect", identifier="spinviewer")
 add_command("pyospat -p 18033 -L FIVE -c pyo_config_5", identifier="pyospat")
 #add_command("/home/mis/src/pyospat/run2.7 -p 18033", identifier="pyospat")
-add_command("pd-extended -jack /home/mis/src/Re-Collect/spatViaSpin.pd", identifier="pd")
+add_command("pd-extended -noaudio /home/mis/src/Re-Collect/ReCollect.pd", identifier="pd")
