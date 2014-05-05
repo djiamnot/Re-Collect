@@ -587,8 +587,8 @@ plugin://ResoSine \, /blit\$1 setParam stop 1;
 #X connect 97 0 59 0;
 #X connect 98 0 57 0;
 #X connect 99 0 37 0;
-#X restore 43 -42 pd blits;
-#X obj 26 -41 bng 15 250 50 0 empty __init_blits empty 17 7 0 10 -262144
+#X restore 937 -85 pd blits;
+#X obj 920 -84 bng 15 250 50 0 empty __init_blits empty 17 7 0 10 -262144
 -1 -1;
 #X obj 26 -1 bng 15 250 50 0 empty init_Grannys empty 17 7 0 10 -262144
 -1 -1;
