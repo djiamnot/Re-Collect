@@ -1,4 +1,4 @@
-#N canvas 261 80 1009 665 10;
+#N canvas 261 81 1009 665 10;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
@@ -1311,7 +1311,7 @@ mul 0.3 \, /ml\$1 setParam harm_wet 0.5 \, /ml\$1 setParam xfade 20
 #X connect 83 0 73 0;
 #X connect 84 0 61 0;
 #X restore 15 88 pd MicroLoops_controls;
-#N canvas 571 101 450 300 base_conf 0;
+#N canvas 571 102 450 300 base_conf 0;
 #X obj 34 207 shell;
 #X obj 34 148 bng 15 250 50 0 empty __init init_media_count 17 7 0
 10 -262144 -1 -1;
@@ -1894,7 +1894,7 @@ plugin://Buzz;
 #X obj 387 -279 Arduino-LED;
 #X text 897 65 start Grannys;
 #X text 543 -26 sounds affect lights;
-#X obj 238 -217 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 238 -217 bng 15 250 50 0 empty empty empty 17 7 0 10 -260097
 -1 -1;
 #X msg 768 101 \; deletePlayers bang;
 #X text 881 109 delete players;
