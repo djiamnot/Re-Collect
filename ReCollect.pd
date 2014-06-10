@@ -1,4 +1,4 @@
-#N canvas 908 80 1009 665 10;
+#N canvas 908 81 1009 665 10;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
 #X declare -lib mrpeach;
@@ -277,7 +277,7 @@ freq \$4;
 #X connect 31 0 30 0;
 #X restore 858 -205 pd pulsar controls;
 #X obj 464 -45 nbx 5 14 -1e+37 1e+37 0 0 empty count_media num_of_soundfiles
-0 -8 0 10 -4034 -1 -1 86 256;
+0 -8 0 10 -4034 -1 -1 0 256;
 #X obj 6 -194 s __init;
 #X obj 809 -298 declare -path abs;
 #X obj 809 -279 declare -path rj;
@@ -592,7 +592,7 @@ plugin://ResoSine \, /blit\$1 setParam stop 1;
 -1 -1;
 #X obj 26 -1 bng 15 250 50 0 empty init_Grannys empty 17 7 0 10 -262144
 -1 -1;
-#N canvas 12 84 1009 665 Grannys 1;
+#N canvas 12 85 1009 665 Grannys 0;
 #X msg 57 67 createNode listener0 Listener;
 #X obj 550 131 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
@@ -843,7 +843,7 @@ setComputationMode 0 \,;
 #X connect 41 0 28 0;
 #X connect 42 0 32 0;
 #X restore 15 69 pd recorders;
-#N canvas 950 383 967 561 instrument_controls 1;
+#N canvas 950 384 967 561 instrument_controls 0;
 #X obj 9 -32 r gr_ctrl;
 #X obj 9 -10 sel 0 1 2 3 4;
 #X obj 263 -12 sel 0 1 2 3 4;
