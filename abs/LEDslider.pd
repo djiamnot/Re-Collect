@@ -1,5 +1,5 @@
-#N canvas 88 330 759 303 10;
-#X obj 46 46 vsl 10 80 0 1 0 0 empty LED-\$1 \$1 0 40 1 9 -262144 -1
+#N canvas 42 400 759 303 10;
+#X obj 46 46 vsl 10 80 0 1 0 0 empty LED-\$1 \$2 0 40 1 9 -262144 -1
 -4160 0 0;
 #X obj 46 229 outlet;
 #X obj 46 208 int;
