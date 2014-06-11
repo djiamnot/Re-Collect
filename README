@@ -11,3 +11,6 @@ Requirements
 pdextended
 rjlib
 pdsheefa
+libsndfile
+sndfile-programs
+sndfile-tools
