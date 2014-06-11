@@ -1,4 +1,4 @@
-#N canvas 953 272 914 549 10;
+#N canvas 953 273 914 549 10;
 #X obj 20 13 cnv 15 150 200 empty empty PIR 20 12 0 14 -203904 -66577
 0;
 #X obj 24 113 abs/convert.ascii2pd CR;
@@ -169,7 +169,7 @@
 #X connect 23 0 12 0;
 #X connect 24 0 15 0;
 #X restore 153 385 pd welcome;
-#N canvas 829 575 756 394 power 1;
+#N canvas 829 575 756 394 power 0;
 #X obj 86 300 s LED-6;
 #X obj 210 300 s LED-12;
 #X obj 337 300 s LED-18;
