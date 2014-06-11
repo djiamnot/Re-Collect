@@ -1,4 +1,4 @@
-#N canvas 647 183 1076 689 10;
+#N canvas 647 184 1076 689 10;
 #X obj 46 -106 inlet;
 #N canvas 571 101 450 300 randombits 0;
 #X obj 114 35 inlet;
@@ -31,7 +31,7 @@
 #X text 282 -117 args: \$0 \, ML instance number;
 #X obj 158 -96 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 659 89 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
+#X obj 656 80 playlist all 400 300 {Helvetica 10 bold} #457782 yellow
 black red;
 #X obj 659 -2 thisdir;
 #X msg 468 223 seek \$1;
@@ -139,23 +139,42 @@ black red;
 #X connect 11 1 1 0;
 #X connect 11 2 3 0;
 #X connect 11 3 9 0;
-#X restore 403 437 pd linearTranslations;
-#X obj 403 477 s \$1-to-SPIN;
-#X obj 400 416 r \$0-self;
+#X restore 57 489 pd linearTranslations;
+#X obj 57 529 s \$1-to-SPIN;
+#X obj 57 469 r \$0-self;
 #X obj 180 -57 s \$0-self;
-#X msg 403 456 /constrained\$1 translateTo \$2 \$3 0 \$4 LinearMotion
+#X msg 57 508 /constrained\$1 translateTo \$2 \$3 0 \$4 LinearMotion
 ;
 #X msg 659 42 location \$1 \, sort 0;
 #X obj 273 78 weighted;
+#X msg 664 395 sndfile-info \$1 | grep Frames | grep -E -o '[0-9]*'
+;
+#X obj 662 419 shell;
+#X obj 662 442 / 44100;
+#X text 726 444 length of file in seconds;
+#X text 724 494 subtract 2 seconds;
+#X obj 453 326 del 1000;
+#X obj 449 409 line;
+#X obj 448 440 pack;
+#X obj 487 417 r \$0-self;
+#X obj 449 493 s \$1-to-SPIN;
+#X msg 449 387 \$2 \, \$1 2000;
+#X msg 394 315 \$4;
+#X obj 438 360 pack;
+#X msg 449 472 /snd\$2 setParam mul \$1;
+#X obj 662 486 - 2000;
+#X obj 662 464 * 1000;
 #X connect 0 0 14 0;
 #X connect 1 0 16 0;
 #X connect 1 0 23 0;
 #X connect 1 0 24 0;
+#X connect 1 0 43 0;
 #X connect 3 0 1 0;
 #X connect 3 0 13 0;
 #X connect 3 0 28 0;
 #X connect 5 0 14 0;
 #X connect 6 0 13 1;
+#X connect 6 0 32 0;
 #X connect 7 0 11 0;
 #X connect 8 0 6 0;
 #X connect 9 0 8 0;
@@ -166,6 +185,7 @@ black red;
 #X connect 14 0 3 0;
 #X connect 14 2 31 0;
 #X connect 14 3 10 0;
+#X connect 14 3 37 0;
 #X connect 15 0 31 1;
 #X connect 16 0 2 0;
 #X connect 17 0 19 0;
@@ -180,3 +200,16 @@ black red;
 #X connect 29 0 26 0;
 #X connect 30 0 6 0;
 #X connect 31 0 8 0;
+#X connect 32 0 33 0;
+#X connect 33 0 34 0;
+#X connect 34 0 47 0;
+#X connect 37 0 44 0;
+#X connect 38 0 39 0;
+#X connect 39 0 45 0;
+#X connect 40 0 39 1;
+#X connect 42 0 38 0;
+#X connect 43 0 44 1;
+#X connect 44 0 42 0;
+#X connect 45 0 41 0;
+#X connect 46 0 37 1;
+#X connect 47 0 46 0;
