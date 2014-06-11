@@ -1,4 +1,4 @@
-#N canvas 3 75 744 641 10;
+#N canvas 496 364 896 689 10;
 #X msg 244 140 createNode listener0 Listener;
 #X obj 132 148 t f b;
 #X msg 195 190 createNode recorder\$1 SoundNode;
@@ -21,7 +21,7 @@
 #X obj 242 339 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 24 585 prepend set;
-#X msg 24 607 0 0 41 20131027-20;
+#X msg 24 607 0 0 36.2 20140610-20-16-11;
 #X obj 132 124 spigot 1;
 #X obj 132 170 t a a b b f;
 #X text 401 190 create SoundNode;
@@ -49,7 +49,9 @@ setMediaURI plugin://Recorder \, /recorder\$1 setParam inchannel \$2
 \, /recorder\$1 setParam dur \$3 \, /recorder\$1 setParam filename
 /home/mis/src/Re-Collect/snd/\$4.wav \, /recorder\$1 setParam play
 1;
-#X obj 374 411 sprintf %4d%2d%2d-%02d-%02d-%02d;
+#X obj 177 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 374 411 sprintf %04d%02d%02d-%02d-%02d-%02d;
 #X connect 0 0 37 0;
 #X connect 1 0 22 0;
 #X connect 2 0 38 0;
@@ -63,12 +65,12 @@ setMediaURI plugin://Recorder \, /recorder\$1 setParam inchannel \$2
 #X connect 6 2 8 0;
 #X connect 7 0 27 0;
 #X connect 8 0 7 1;
-#X connect 9 0 41 0;
-#X connect 9 1 41 1;
-#X connect 9 2 41 2;
-#X connect 10 0 41 3;
-#X connect 10 1 41 4;
-#X connect 10 2 41 5;
+#X connect 9 0 42 0;
+#X connect 9 1 42 1;
+#X connect 9 2 42 2;
+#X connect 10 0 42 3;
+#X connect 10 1 42 4;
+#X connect 10 2 42 5;
 #X connect 11 0 9 0;
 #X connect 11 1 10 0;
 #X connect 12 0 3 0;
@@ -96,4 +98,5 @@ setMediaURI plugin://Recorder \, /recorder\$1 setParam inchannel \$2
 #X connect 34 1 0 0;
 #X connect 39 0 21 0;
 #X connect 40 0 37 0;
-#X connect 41 0 15 0;
+#X connect 41 0 34 0;
+#X connect 42 0 15 0;
