@@ -1,0 +1,76 @@
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [letter]
+#+LATEX_HEADER: \oddsidemargin 0cm
+#+LATEX_HEADER: \evensidemargin 0cm
+#+LATEX_HEADER: \textwidth 15.5cm
+#+LATEX_HEADER: \topmargin -1cm
+#+LATEX_HEADER: \textheight 23cm
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhead{}
+#+LATEX_HEADER: \fancyhead[LE,RO]{Software architecture}
+#+LATEX_HEADER: \fancyhead[RE,LO]{Re-Collect}
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: author:nil
+#+OPTIONS: timestamp:nil date:nil
+#+LANGUAGE: english
+#+TITLE: Re-Collect software architecture
+#+DATE: <2013-11-26 Tue>
+
+
+* Overview of the software functions
+Re-Collect uses a variety of software and hardware components in order to fill the space with sound and light following user interaction. On a high level, when a motion sensor is activated, its signal is read by the program and fires a number of events. First, the "node"[fn:1], under which the presence was detected, lights up and plays a short sound in order to acknowledge the visitor. It then chooses a previously recorded sound file and activates the playback. There are several ways in which the sound is manipulated during playback. It could be slowed down, sped up, granulated (cut up in very short chunks, in the range of tens to a couple hundred milliseconds which are then played as "clouds" of sound), cut up in short chunks of 1 second or less which are played back looping at variable speeds. The piece has 4 different states and different sound manipulations are associated with the different states.
+
+** Software components
+
+Re-Collect glues together different types of software in order to do its work. There are 3 major software groups that inter-operate together.
+
+- Pure Data, a visual programming environment for multimedia - http://puredata.info/
+- SpinFramework, rapid prototyping for spacial interaction and visualization of networked virtual environments - http://www.spinframework.org/
+- Pyo, Python signal processing modules, https://code.google.com/p/pyo/
+- Pyospat, an audio engine that wraps Pyo and understands Spin messages - https://github.com/sat-metalab/pyospat
+
+In short, Pure data is used as show control software that glues many pieces together. It reads the state of motion sensors (provided by an Arduino) and dispatches the information to various algorithms that deal with light and sound control. The lighting control is not very complex, different presets are chosen based on some conditions and data is sent to appropriate lighting channels. Pure data patch also takes care of all the logic regarding sound playback. Depending and the different states and other conditions it chooses which sound file will be played using which algorithm. However, Pure data does not communicate directly with the sound engine, it send the information to Spin which in turn forwards the commands to Pyospat.
+
+Spin is being used as a spatialization and physical modelling engine. We make use of 2 functionalities, it creates a virtual environment that simulates certain laws of physics that are applied to the movement of the sounds. Spin also contains a model of the installation with 3D coordinates of the location of the speakers and once the sounds are set in motion, the volumes are calculated based on the sound distance from the speaker and thus the visitor can perceive sounds moving through the space. This is done thanks to the fact that Pyospat, the audio engine used in this piece, understands Spin's 3D world and takes care of all audio rendering according to various types of information it obtains from Spin. 
+
+The schematic below illustrates this high-level architecture.
+
+#+begin_src ditaa :file softwareArch.png :cmdline -r -s 0.8
+  
+     Arduino
+           |
+           |
+           |
+           V  
+  +--+-----+----+               +--------------+------------+              +-------------+
+  |  |          |               |              |  Physics   |              |             |
+  |  |  Sensor  |               |              |  c799      |              |             |
+  |  |  Read    |               |              |            |              |   Pyospat   |
+  |  |  c799    |               |              |            |              |             |
+  |  +----------+               |              +------------+              |             |
+  |  | Spin ctrl|               |              |            |              |             |
+  |  | c799     +------=------->+              | Spatial    +-------=----->+             |
+  |  |          |               |              | c799       |              |             |
+  |  +----------+               |              |            |              |             |
+  |  | LED ctrl |               |              +------------+              |             |
+  |  | c799     +----+          |                           |              |             |
+  |  +----------+    |          |       SpinFramework       |              |             |
+  | Pure data   |    |          |       cBLU                |              |   cRED      |
+  | cGRE        |    |          |                           |              |             |
+  |             |    |          +---------------------------+              +-------------+
+  +-------------+    |
+                     |
+                     |
+                     |                     --------- Data ---------
+                     V                     ---=----- OSC  ---=-----
+                     Arduino
+#+end_src
+
+In its current form Re-Collect uses 5.1 audio configuration but it can easily be changed to any audio output configuration.
+
+* Footnotes
+
+[fn:1] A "node" in Re-Collect terms is the cluster of objects that form one group of objects consisting of several speakers that are connected to *one* audio channel, one microphone and corresponding lights.
+ 

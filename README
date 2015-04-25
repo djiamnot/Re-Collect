@@ -1,13 +1,18 @@
-Re-Collect
-==========
+* Re-Collect
 
-About
------
-This is software part to run Re-Collect installation (in progress) by Jane TIngley and Michal Seta.  
+** About
+This is software part to run Re-Collect installation by Jane Tingley and Michal Seta.  
 
-Requirements
-------------
+** Requirements
 
 pdextended
 rjlib
 pdsheefa
+libsndfile
+sndfile-programs
+sndfile-tools
+normalize-audio
+lunch
+
+** Functionality overview
+

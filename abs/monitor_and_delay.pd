@@ -1,0 +1,15 @@
+#N canvas 3 75 450 300 10;
+#X floatatom 112 221 5 0 0 0 - - -;
+#X obj 91 158 del 2500;
+#X obj 91 178 t b b;
+#X obj 91 200 expr random(0 \, 5);
+#X obj 66 245 s gr_ctrl;
+#X obj 98 83 inlet;
+#X obj 172 158 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 3 0 4 0;
+#X connect 5 0 1 0;
+#X connect 6 0 2 0;

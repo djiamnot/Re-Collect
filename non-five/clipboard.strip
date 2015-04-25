@@ -1,0 +1,4 @@
+{
+	Mixer_Strip 0x1 create :name "Unnamed" :width "narrow" :tab "fader" :color 1443681080 :gain_mode 0 :mute_mode 0 :group 0x0 :auto_input "" :manual_connection 0
+	Chain 0x2 create :strip 0x1 :tab "chain"
+}
