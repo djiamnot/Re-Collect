@@ -2,6 +2,7 @@
 # -*- python -*-
 
 #add_command("hdspmixer", identifier="hdspmixer")
+add_command("/home/mis/src/Re-Collect/scripts/analyseANDremove.py", identifier="file_analyser", sleep_after=1, respawn=False)
 add_command("/usr/bin/jackd -dalsa -dhw:1 -r48000 -p1024 -n2", identifier="jackd", sleep_after=1)
 add_command("/usr/local/bin/spinserver --spatosc BasicTranslator osc.udp://localhost:18033 --scene-id ReCollect", host="localhost", identifier="spinserver")
 add_command("/usr/local/bin/pyospat -p 18033 -L FIVE", host="localhost", identifier="pyospat", depends="jackd", sleep_after=3)
