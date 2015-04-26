@@ -16,7 +16,7 @@
 #+OPTIONS: timestamp:nil date:nil
 #+LANGUAGE: english
 #+TITLE: Re-Collect software architecture
-#+DATE: <2013-11-26 Tue>
+#+DATE: <2015-04-25 Sat>
 
 
 * Overview of the software functions
@@ -65,6 +65,7 @@ The schematic below illustrates this high-level architecture.
                      |
                      |                     --------- Data ---------
                      V                     ---=----- OSC  ---=-----
+
                      Arduino
 #+end_src
 
@@ -72,5 +73,7 @@ In its current form Re-Collect uses 5.1 audio configuration but it can easily be
 
 * Footnotes
 
-[fn:1] A "node" in Re-Collect terms is the cluster of objects that form one group of objects consisting of several speakers that are connected to *one* audio channel, one microphone and corresponding lights.
+[fn:1] A "node" in Re-Collect terms is the cluster of objects that form one group of objects consisting of five speakers that are connected to *one* audio channel, one microphone and corresponding lights.
  
+** Workflow
+
