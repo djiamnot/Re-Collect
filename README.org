@@ -14,5 +14,6 @@ sndfile-tools
 normalize-audio
 lunch
 
-** Functionality overview
+** Documentation
 
+See =doc= directory
