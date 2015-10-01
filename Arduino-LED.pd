@@ -1,4 +1,4 @@
-#N canvas 107 179 914 549 10;
+#N canvas 107 176 914 549 10;
 #X obj 20 13 cnv 15 150 200 empty empty PIR 20 12 0 14 -203904 -66577
 0;
 #X obj 24 113 abs/convert.ascii2pd CR;
@@ -22,8 +22,8 @@
 #X obj 173 13 cnv 15 580 230 empty empty LEDs 20 12 0 14 -203904 -66577
 0;
 #X obj 388 200 prepend set;
-#X msg 388 222 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7
-7 7 7 7;
+#X msg 388 222 0 0 0 0 0 0 7 7 7 7 7 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0;
 #X obj 184 107 pack 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0 0 0 0 0;
 #N canvas 3 75 450 300 (subpatch) 0;
@@ -399,7 +399,7 @@
 #X msg 231 201 open \$1;
 #X obj 184 222 comport 32 57600;
 #X obj 23 91 comport 33 57600;
-#N canvas 58 407 450 300 pulse-everything 1;
+#N canvas 58 404 450 300 pulse-everything 0;
 #X msg 103 223 \; LED-\$1 \$2;
 #X obj 103 123 until;
 #X obj 103 183 t f b;
