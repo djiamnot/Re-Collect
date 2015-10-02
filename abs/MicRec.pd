@@ -35,8 +35,8 @@
 #X msg 175 82 0;
 #X text 215 72 close the gate after trigger and keep it close while
 recording n seconds;
-#X obj 134 32 inlet;
-#X obj 134 51 t b b;
+#X obj 132 13 inlet;
+#X obj 132 58 t b b;
 #X text 341 54 Inlet 0: bang - triggers recording;
 #X text 303 7 Arguments: \$0 \, channel to record from. The channel
 number is also ID so there should not be more than one recorders on
@@ -49,7 +49,7 @@ setMediaURI plugin://Recorder \, /recorder\$1 setParam inchannel \$2
 \, /recorder\$1 setParam dur \$3 \, /recorder\$1 setParam filename
 /home/mis/src/Re-Collect/snd/\$4.wav \, /recorder\$1 setParam play
 1;
-#X obj 177 21 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 176 7 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 374 411 sprintf %04d%02d%02d-%02d-%02d-%02d;
 #X msg 277 561 \$3 \$4;
@@ -121,6 +121,7 @@ setParam speed 1;
 #X obj 290 763 r normalizationLevel;
 #X msg 245 806 normalize-audio -a -40dBFS /home/mis/src/Re-Collect/snd/\$1.wav
 ;
+#X obj 132 36 del 2000;
 #X connect 0 0 62 0;
 #X connect 1 0 22 0;
 #X connect 2 0 38 0;
@@ -164,12 +165,12 @@ setParam speed 1;
 #X connect 29 0 28 0;
 #X connect 30 0 21 1;
 #X connect 31 0 21 1;
-#X connect 33 0 34 0;
+#X connect 33 0 70 0;
 #X connect 34 0 3 0;
 #X connect 34 1 0 0;
 #X connect 39 0 21 0;
 #X connect 40 0 37 0;
-#X connect 41 0 34 0;
+#X connect 41 0 70 0;
 #X connect 42 0 15 0;
 #X connect 43 0 50 0;
 #X connect 44 0 45 0;
@@ -197,3 +198,4 @@ setParam speed 1;
 #X connect 67 2 58 0;
 #X connect 68 0 65 1;
 #X connect 69 0 63 0;
+#X connect 70 0 34 0;
