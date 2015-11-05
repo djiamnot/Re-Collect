@@ -50,8 +50,8 @@ setMediaURI plugin://Recorder \, /recorder\$1 setParam inchannel \$2
 #X obj 278 592 t b f;
 #X obj 278 654 del;
 #X obj 278 680 symbol;
-#X obj 278 804 f \$2;
-#X obj 278 826 pack f s;
+#X obj 256 801 f \$2;
+#X obj 256 823 pack f s;
 #X obj 277 892 s \$1-to-SPIN;
 #X obj 278 570 unpack f s;
 #X obj 253 652 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -116,8 +116,8 @@ setParam speed 1;
 #X text 488 768 normalize audio before playback;
 #X obj 255 737 pack s s;
 #X msg 314 737 -30dBFS;
-#X obj 358 675 r normalizationLevel;
-#X msg 254 756 normalize-audio -a -40dBFS /home/mis/src/Re-Collect/snd/\$1.wav
+#X obj 348 675 r normalizationLevel;
+#X msg 254 756 normalize-audio -a \$2 /home/mis/src/Re-Collect/snd/\$1.wav
 ;
 #X connect 0 0 32 0;
 #X connect 1 0 19 0;
