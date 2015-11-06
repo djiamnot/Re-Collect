@@ -14,5 +14,7 @@ sndfile-tools
 normalize-audio
 lunch
 
-** Functionality overview
+** Important
 
+analysis and removal of files handled by a cron job
+launch.lunch launches everything
